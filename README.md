@@ -1,20 +1,19 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://ai.google.dev/static/site-assets/images/share-ais-513315318.png" />
-</div>
+# Coinpsi
 
-# Run and deploy your AI Studio app
-
-This contains everything you need to run your app locally.
-
-View your app in AI Studio: https://ai.studio/apps/46ba65d4-6ac1-4a53-ac59-ffa0f4eaa743
+Pagina web de COINPSI con Node.js y Express.
 
 ## Run Locally
 
-**Prerequisites:**  Node.js
-
+**Prerequisites:** Node.js 20.x
 
 1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
+   ```bash
+   npm install
+   ```
+2. Configure environment variables using `.env.example` as reference.
 3. Run the app:
-   `npm run dev`
+   ```bash
+   npm run dev
+   ```
+
+The app runs at `http://localhost:3000` by default.
