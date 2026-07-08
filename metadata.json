@@ -1,0 +1,6 @@
+{
+  "name": "COINPSI",
+  "description": "Landing page moderna y profesional para COINPSI (Corporación de Investigaciones Psicológicas), enfocada en bienestar psicológico, salud mental organizacional y desarrollo humano.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
