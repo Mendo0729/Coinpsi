@@ -92,9 +92,7 @@ function initGlobalClickHandlers() {
       galleryFilter.classList.add("active");
       renderGalleryGrid(galleryItems, galleryFilter.dataset.galleryFilter);
       observeReveal();
-      return;
     }
-
   });
 }
 
