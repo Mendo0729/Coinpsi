@@ -21,11 +21,6 @@ export function renderHero() {
               <a id="hero-cta-info" href="#contacto" class="btn btn-light"><span>Solicitar información</span>${icon("ArrowRight")}</a>
               <a id="hero-cta-services" href="#servicios" class="btn btn-ghost"><span>Conocer servicios</span></a>
             </div>
-            <div class="value-tags">
-              <span>${icon("CheckCircle2")}Enfoque Científico</span>
-              <span>${icon("CheckCircle2")}Resultados Medibles</span>
-              <span>${icon("CheckCircle2")}Equipos de Elite</span>
-            </div>
           </div>
           <div class="hero-media reveal delay-2">
             <div class="media-glow"></div>
