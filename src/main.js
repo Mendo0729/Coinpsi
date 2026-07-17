@@ -4,7 +4,6 @@ import { renderHero } from "./components/hero.js";
 import { renderAbout, initAbout } from "./components/about.js";
 import { renderServices, openServiceModal } from "./components/services.js";
 import { renderTomateUnBreak, handleTomateUnBreakClick } from "./components/tomateUnBreak.js";
-import { renderImpact, observeCounters } from "./components/impact.js";
 import { renderEventsShell, renderEventsList, eventFormTemplate, showRsvpConfirmation } from "./components/events.js";
 import { renderGalleryShell, renderGalleryGrid, lightboxTemplate } from "./components/gallery.js";
 import { renderAllies } from "./components/allies.js";
@@ -22,7 +21,6 @@ function renderApp() {
       ${renderAbout()}
       ${renderServices(services)}
       ${renderTomateUnBreak()}
-      ${renderImpact()}
       ${renderEventsShell()}
       ${renderGalleryShell()}
       ${renderAllies(allies)}
@@ -47,7 +45,6 @@ function initApp() {
   initGlobalClickHandlers();
   initFormHandlers();
   observeReveal();
-  observeCounters();
 }
 
 function initGlobalClickHandlers() {
@@ -95,9 +92,7 @@ function initGlobalClickHandlers() {
       galleryFilter.classList.add("active");
       renderGalleryGrid(galleryItems, galleryFilter.dataset.galleryFilter);
       observeReveal();
-      return;
     }
-
   });
 }
 
