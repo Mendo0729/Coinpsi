@@ -26,10 +26,6 @@ export function renderHero() {
             <div class="media-glow"></div>
             <figure class="image-card hero-image">
               <img src="./src/assets/images/Portada.png" alt="Capacitación psicológica interactiva de COINPSI" referrerpolicy="no-referrer" />
-              <figcaption class="image-overlay-card">
-                <span class="overlay-icon">${icon("Sparkles", "pulse")}</span>
-                <span><strong>Terapia y Capacitaciones</strong><small>Respaldados científicamente para generar cambios duraderos.</small></span>
-              </figcaption>
             </figure>
           </div>
         </div>
