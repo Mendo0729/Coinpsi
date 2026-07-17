@@ -1,5 +1,7 @@
 import { icon } from "../icons.js";
 
+const ABOUT_TABS = ["creemos", "mision", "vision", "valores"];
+
 export function renderAbout() {
   return `
     <section id="quienes-somos" class="section about-section">
@@ -9,21 +11,22 @@ export function renderAbout() {
         <div class="split-grid">
           <div class="section-copy reveal">
             <span class="eyebrow"><span></span>¿QUIÉNES SOMOS?</span>
-            <h2>Respaldamos el factor humano con ciencia y empatía certificada.</h2>
-            <p>La <strong>Corporación de Investigaciones Psicológicas (COINPSI)</strong> nace con el propósito de fusionar la rigurosidad científica de la psicología aplicada con las necesidades reales de desarrollo de personas, empresas e instituciones educativas.</p>
-            <p class="muted">A través de evaluaciones de salud ocupacional, talleres psicoterapéuticos interactivos e investigaciones sociológicas de comportamiento, ayudamos a crear espacios de respeto, crecimiento integral y alta motivación.</p>
-            <div class="micro-counters">
-              <div><strong>100%</strong><span>Criterio Científico</span></div>
-              <div><strong>AA</strong><span>Estándar de Seguridad</span></div>
+            <h2>Potenciamos el desarrollo humano con psicología, ciencia y propósito.</h2>
+            <p>Somos una corporación especializada en psicología dedicada a promover el desarrollo integral de las personas, las organizaciones y las comunidades.</p>
+            <p class="muted">Trabajamos para fortalecer las competencias humanas, potenciar las capacidades individuales y colectivas, y favorecer el bienestar emocional mediante procesos de formación, investigación, intervención y acompañamiento profesional.</p>
+            <div class="micro-counters" aria-label="Pilares de COINPSI">
+              <div><strong>Ciencia</strong><span>Práctica basada en evidencia</span></div>
+              <div><strong>Bienestar</strong><span>Desarrollo integral</span></div>
             </div>
           </div>
           <div class="tabs-panel reveal delay-1">
-            <div class="tabs" role="tablist">
-              <button class="tab-button active" data-tab="mision">${icon("Target")}<span>Misión</span></button>
-              <button class="tab-button" data-tab="vision">${icon("Eye")}<span>Visión</span></button>
-              <button class="tab-button" data-tab="valores">${icon("Award")}<span>Valores</span></button>
+            <div class="tabs" role="tablist" aria-label="Identidad institucional de COINPSI">
+              <button id="tab-creemos" class="tab-button active" type="button" role="tab" aria-selected="true" aria-controls="about-tab-content" data-tab="creemos">${icon("HeartHandshake")}<span>Qué creemos</span></button>
+              <button id="tab-mision" class="tab-button" type="button" role="tab" aria-selected="false" aria-controls="about-tab-content" data-tab="mision">${icon("Target")}<span>Misión</span></button>
+              <button id="tab-vision" class="tab-button" type="button" role="tab" aria-selected="false" aria-controls="about-tab-content" data-tab="vision">${icon("Eye")}<span>Visión</span></button>
+              <button id="tab-valores" class="tab-button" type="button" role="tab" aria-selected="false" aria-controls="about-tab-content" data-tab="valores">${icon("Award")}<span>Valores</span></button>
             </div>
-            <div id="about-tab-content" class="tab-content"></div>
+            <div id="about-tab-content" class="tab-content" role="tabpanel" aria-live="polite" aria-labelledby="tab-creemos"></div>
           </div>
         </div>
       </div>
@@ -32,46 +35,87 @@ export function renderAbout() {
 }
 
 export function initAbout() {
-  document.querySelectorAll(".tab-button").forEach((button) => {
-    button.addEventListener("click", () => {
-      document.querySelectorAll(".tab-button").forEach((btn) => btn.classList.remove("active"));
-      button.classList.add("active");
-      renderAboutTab(button.dataset.tab);
+  const buttons = [...document.querySelectorAll(".tab-button")];
+
+  buttons.forEach((button, index) => {
+    button.addEventListener("click", () => activateAboutTab(button.dataset.tab));
+    button.addEventListener("keydown", (event) => {
+      if (!["ArrowLeft", "ArrowRight", "Home", "End"].includes(event.key)) return;
+
+      event.preventDefault();
+      let nextIndex = index;
+      if (event.key === "ArrowLeft") nextIndex = (index - 1 + buttons.length) % buttons.length;
+      if (event.key === "ArrowRight") nextIndex = (index + 1) % buttons.length;
+      if (event.key === "Home") nextIndex = 0;
+      if (event.key === "End") nextIndex = buttons.length - 1;
+
+      buttons[nextIndex].focus();
+      activateAboutTab(buttons[nextIndex].dataset.tab);
     });
   });
-  renderAboutTab("mision");
+
+  activateAboutTab("creemos");
 }
 
-function renderAboutTab(tab = "mision") {
+function activateAboutTab(tab) {
+  if (!ABOUT_TABS.includes(tab)) return;
+
+  document.querySelectorAll(".tab-button").forEach((button) => {
+    const isActive = button.dataset.tab === tab;
+    button.classList.toggle("active", isActive);
+    button.setAttribute("aria-selected", String(isActive));
+  });
+
+  renderAboutTab(tab);
+}
+
+function renderAboutTab(tab = "creemos") {
   const target = document.getElementById("about-tab-content");
   if (!target) return;
 
   const content = {
+    creemos: `
+      <div class="tab-pane fade-in">
+        <span class="tab-icon">${icon("HeartHandshake")}</span>
+        <div>
+          <h3>Creemos en el potencial de cada persona</h3>
+          <p>Creemos que cada persona posee un enorme potencial para crecer, transformarse y generar cambios positivos en su entorno. Por ello, impulsamos estrategias basadas en la evidencia científica, el compromiso ético y una visión humanista que contribuyen a la construcción de una sociedad más saludable, resiliente y consciente.</p>
+        </div>
+        <div class="commitment">${icon("CheckCircle")}<span>Evidencia científica, ética y visión humanista</span></div>
+      </div>
+    `,
     mision: `
       <div class="tab-pane fade-in">
         <span class="tab-icon">${icon("Target")}</span>
-        <div><h3>Nuestra Misión Institucional</h3><p>Investigar, diseñar y ejecutar soluciones psicológicas asertivas que fortalezcan la salud mental y potencien el desarrollo humano en organizaciones públicas, privadas y el ámbito socioeducativo, sustentados siempre en metodologías basadas en evidencia científica y un trato profundamente empático.</p></div>
-        <div class="commitment">${icon("CheckCircle")}<span>Compromiso Certificado por COINPSI</span></div>
+        <div>
+          <h3>Nuestra misión</h3>
+          <p>Potenciar el desarrollo integral de individuos, organizaciones y comunidades mediante servicios psicológicos que fortalezcan sus competencias frente a los desafíos de una sociedad en constante transformación, contribuyendo a su bienestar emocional, salud mental y crecimiento personal.</p>
+        </div>
+        <div class="commitment">${icon("CheckCircle")}<span>Bienestar emocional, salud mental y crecimiento</span></div>
       </div>
     `,
     vision: `
       <div class="tab-pane fade-in">
         <span class="tab-icon">${icon("Eye")}</span>
-        <div><h3>Nuestra Visión a Futuro</h3><p>Consolidarnos para el año 2028 como la corporación líder en investigación del comportamiento organizacional, desarrollo psicoterapéutico y bienestar integral de América Latina, siendo reconocidos por nuestro rigor metodológico, la excelencia de nuestro equipo clínico y la calidez en el servicio.</p></div>
-        <div class="commitment">${icon("CheckCircle")}<span>Hacia un liderazgo científico continental</span></div>
+        <div>
+          <h3>Nuestra visión</h3>
+          <p>Ser una corporación líder de la psicología a nivel nacional e internacional, con enfoque bio-psico-socio-espiritual, reconocida por la excelencia de sus servicios y por promover el bienestar integral del ser humano y su entorno.</p>
+        </div>
+        <div class="commitment">${icon("CheckCircle")}<span>Liderazgo con enfoque integral</span></div>
       </div>
     `,
     valores: `
       <div class="values-grid fade-in">
         ${[
-          ["Rigor Científico", "Sustentamos todas nuestras metodologías en investigaciones y evidencia científica sólida.", "ShieldCheck"],
-          ["Empatía Genuina", "Ubicamos el bienestar integral de la persona en el centro de cada una de nuestras intervenciones.", "HeartHandshake"],
-          ["Confidencialidad Absoluta", "Garantizamos un trato ético, transparente e íntegro en el manejo de toda la información.", "ShieldCheck"],
-          ["Innovación Humana", "Diseñamos herramientas dinámicas adaptables al cambio de las organizaciones actuales.", "Compass"]
+          ["Honestidad y transparencia", "Actuamos con integridad y coherencia, promoviendo relaciones basadas en la confianza, la objetividad y una comunicación clara.", "ShieldCheck"],
+          ["Respeto y confidencialidad", "Reconocemos la dignidad y singularidad de cada persona, protegiendo su privacidad con estricto apego a la ética profesional.", "CheckCircle"],
+          ["Dedicación y excelencia", "Desarrollamos cada proyecto con compromiso, profesionalismo y vocación de servicio, buscando calidad y mejora continua.", "Award"],
+          ["Innovación e investigación", "Generamos y aplicamos conocimiento científico para responder con soluciones actuales a los desafíos del desarrollo humano.", "Compass"]
         ].map(([name, desc, iconName]) => `<div class="value-card"><span>${icon(iconName)}</span><div><strong>${name}</strong><p>${desc}</p></div></div>`).join("")}
       </div>
     `
   };
 
+  target.setAttribute("aria-labelledby", `tab-${tab}`);
   target.innerHTML = content[tab];
 }
