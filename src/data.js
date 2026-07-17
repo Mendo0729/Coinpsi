@@ -1,75 +1,56 @@
 export const COINPSI_DATA = {
   services: [
     {
-      id: "talleres-empresariales",
-      title: "Talleres Empresariales",
-      shortDescription: "Optimización de clima laboral, desarrollo de liderazgo consciente y gestión constructiva del estrés.",
-      longDescription: "Nuestros talleres corporativos están diseñados para empoderar a los equipos de trabajo a través del desarrollo de competencias socioemocionales clave. Abordamos dinámicas de grupo reales con metodologías vivenciales basadas en las últimas investigaciones de la psicología organizacional.",
+      id: "empresas-organizaciones",
+      title: "Servicios para Empresas y Organizaciones",
+      shortDescription: "Fortalecemos el bienestar, el desarrollo humano y la productividad mediante soluciones adaptadas al entorno laboral.",
+      longDescription: "Acompañamos a empresas y organizaciones en la construcción de espacios laborales más humanos, colaborativos y saludables. Partimos de la relación entre bienestar individual y bienestar colectivo para diseñar intervenciones ajustadas a las necesidades reales de cada organización.",
       iconName: "Briefcase",
       benefits: [
-        "Fortalecimiento de la cohesión interna y el trabajo colaborativo.",
-        "Herramientas aplicables de respiración, reencuadre y descompresión laboral.",
-        "Estilos de liderazgo empático que elevan la productividad y la lealtad laboral."
+        "Diagnóstico organizacional mediante observación, entrevistas, cuestionarios y análisis de información.",
+        "Evaluación psicolaboral para selección de personal, con captación de candidatos, entrevistas por competencias, pruebas psicológicas, informes y recomendaciones.",
+        "Capacitaciones en habilidades blandas, bienestar y cultura, además de talleres generales y actividades de cuerdas altas y bajas.",
+        "Programa de bienestar y acompañamiento a colaboradores con orientación psicológica, atención ante crisis, referencia a especialistas y seguimiento confidencial."
       ]
     },
     {
-      id: "salud-mental-organizacional",
-      title: "Salud Mental Organizacional",
-      shortDescription: "Programas de seguridad psicosocial, atención temprana de riesgos y prevención activa del burnout.",
-      longDescription: "Desarrollamos e implementamos sistemas de vigilancia epidemiológica para la salud mental, alineados con las regulaciones de seguridad y salud laboral. Ayudamos a evaluar el estrés laboral, prevenir el acoso y fomentar entornos saludables.",
-      iconName: "ShieldAlert",
-      benefits: [
-        "Reducción drástica del ausentismo laboral por causas emocionales.",
-        "Identificación y diagnóstico temprano de factores de riesgo psicosocial.",
-        "Talleres de autocuidado específicos para mandos medios y directivos."
-      ]
-    },
-    {
-      id: "capacitacion-desarrollo-humano",
-      title: "Capacitación y Desarrollo Humano",
-      shortDescription: "Programas de entrenamiento continuo basados en evidencia para potenciar habilidades blandas.",
-      longDescription: "Capacitamos al personal en habilidades críticas del siglo XXI: comunicación asertiva, resolución pacífica de conflictos, resiliencia ante entornos volátiles e inteligencia emocional aplicada.",
-      iconName: "TrendingUp",
-      benefits: [
-        "Desbloqueo de potencialidades internas y mentalidad de crecimiento.",
-        "Mejora de la comunicación interna intrapersonal e interpersonal.",
-        "Adaptabilidad al cambio y resiliencia frente a transformaciones corporativas."
-      ]
-    },
-    {
-      id: "ferias-salud",
-      title: "Ferias de Salud Mental",
-      shortDescription: "Eventos dinámicos, dinámicas lúdicas y evaluaciones diagnósticas breves dentro de tu organización.",
-      longDescription: "Llevamos el bienestar a un nivel macro y participativo. Nuestras Ferias de Salud incluyen stands especializados, evaluaciones breves de niveles de estrés, tamizajes psicométricos exprés, masajes express guiados y dinámicas lúdicas reflexivas.",
-      iconName: "Activity",
-      benefits: [
-        "Participación masiva con baja resistencia y alta receptividad de los colaboradores.",
-        "Reporte gerencial consolidado y anónimo sobre los niveles generales de bienestar.",
-        "Stands temáticos: higiene del sueño, nutrición emocional, mindfulness."
-      ]
-    },
-    {
-      id: "orientacion-psicologica",
-      title: "Orientación Psicológica",
-      shortDescription: "Atención individualizada, contención en crisis y asesoramiento ejecutivo presencial o virtual.",
-      longDescription: "Brindamos un espacio de escucha activa, libre de juicios, guiado por psicólogos expertos con maestría y amplia trayectoria clínica. Acompañamos procesos de crecimiento personal, manejo de duelo, transiciones de carrera y reestructuración cognitiva.",
+      id: "consulta-psicologica",
+      title: "Consulta Psicológica",
+      shortDescription: "Un espacio seguro y confidencial para comprender emociones, pensamientos y situaciones con orientación profesional.",
+      longDescription: "La consulta psicológica ofrece un espacio de diálogo seguro y confidencial donde la persona puede expresar aquello que desea comprender mejor, recibir orientación profesional y desarrollar herramientas para afrontar su proceso de una manera más saludable.",
       iconName: "HeartHandshake",
       benefits: [
-        "Atención 100% personalizada con enfoque humanista y cognitivo-conductual.",
-        "Sesiones virtuales seguidas mediante plataformas cifradas y confidenciales.",
-        "Ayuda oportuna y profesional ante crisis de pánico o bloqueo emocional."
+        "Entrevista inicial.",
+        "Aplicación de pruebas psicológicas cuando sea necesario.",
+        "Impresión diagnóstica.",
+        "Diseño de un plan de acción personalizado."
       ]
     },
     {
-      id: "programas-educativos",
-      title: "Programas Educativos",
-      shortDescription: "Intervenciones enriquecedoras para colegios, institutos y universidades en salud socioemocional.",
-      longDescription: "Colaboramos con el ecosistema educativo para formar estudiantes, docentes y padres de familia. Implementamos escuelas para padres, programas preventivos de acoso escolar (bullying) y desarrollo de habilidades metodológicas para educadores.",
-      iconName: "GraduationCap",
+      id: "trabajo-familiar-equipo",
+      title: "Técnica de Trabajo Familiar en Equipo",
+      shortDescription: "Acompañamiento para fortalecer la comunicación, la unión y la colaboración dentro del núcleo familiar.",
+      longDescription: "Este servicio analiza la dinámica familiar y promueve la participación de sus integrantes para identificar fortalezas, mejorar la comunicación, superar retos y avanzar hacia objetivos comunes.",
+      iconName: "Users",
       benefits: [
-        "Disminución de problemas disciplinarios mediante talleres socioemocionales.",
-        "Incremento del sentido de pertenencia y motivación al logro académico.",
-        "Estrategias prácticas de escuela para padres adaptadas a problemáticas infantojuveniles."
+        "Entrevista inicial o diagnóstica.",
+        "Impresión observacional en campo.",
+        "Desarrollo de un plan de acción basado en la situación presentada.",
+        "Entrevistas e intervenciones de seguimiento."
+      ]
+    },
+    {
+      id: "proyectos-sociales-comunitarios",
+      title: "Proyectos Sociales y Comunitarios",
+      shortDescription: "Iniciativas para fortalecer la salud mental, la convivencia, la empatía y el sentido de comunidad.",
+      longDescription: "Diseñamos, ejecutamos, monitoreamos y evaluamos iniciativas que responden a necesidades psicosociales de las comunidades, reconociendo que el bienestar de cada persona contribuye al bienestar colectivo.",
+      iconName: "Presentation",
+      benefits: [
+        "Programa comunitario de responsabilidad social: Tómate un Break con COINPSI.",
+        "Campañas de sensibilización sobre bienestar emocional en redes sociales, medios, ferias comunitarias y organizaciones.",
+        "Diseño, ejecución, monitoreo y evaluación de investigaciones comunitarias y programas sociales.",
+        "Talleres, jornadas de orientación y actividades participativas.",
+        "Gestión de alianzas con empresas privadas, organizaciones no gubernamentales y gobiernos locales."
       ]
     }
   ],
