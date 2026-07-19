@@ -9,7 +9,6 @@ import { renderGalleryShell, renderGalleryGrid, lightboxTemplate } from "./compo
 import { renderAllies } from "./components/allies.js";
 import { renderContact, initContact, handleContactSubmit } from "./components/contact.js";
 import { renderFooter, initFooter } from "./components/footer.js";
-import { renderSupportWidget, initSupportWidget } from "./components/supportWidget.js";
 
 const { services, events, galleryItems, allies } = COINPSI_DATA;
 
@@ -27,7 +26,6 @@ function renderApp() {
       ${renderContact(services)}
     </main>
     ${renderFooter()}
-    ${renderSupportWidget()}
     <div id="modal-root"></div>
   `;
 }
@@ -37,7 +35,6 @@ function initApp() {
   initAbout();
   initFooter();
   initContact();
-  initSupportWidget();
 
   renderEventsList(events);
   renderGalleryGrid(galleryItems);
