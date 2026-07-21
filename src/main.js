@@ -4,13 +4,22 @@ import { renderHero } from "./components/hero.js";
 import { renderAbout, initAbout } from "./components/about.js";
 import { renderServices, openServiceModal } from "./components/services.js";
 import { renderTomateUnBreak, handleTomateUnBreakClick } from "./components/tomateUnBreak.js";
-import { renderEventsShell, renderEventsList, eventFormTemplate, showRsvpConfirmation } from "./components/events.js";
+import {
+  renderEventFilters,
+  renderEventsError,
+  renderEventsShell,
+  renderEventsList,
+  eventFormTemplate,
+  showRsvpConfirmation
+} from "./components/events.js";
 import { renderGalleryShell, renderGalleryGrid, lightboxTemplate } from "./components/gallery.js";
 import { renderAllies } from "./components/allies.js";
 import { renderContact, initContact, handleContactSubmit } from "./components/contact.js";
 import { renderFooter, initFooter } from "./components/footer.js";
+import { getPublishedEvents } from "./services/event.service.js";
 
-const { services, events, galleryItems, allies } = COINPSI_DATA;
+const { services, galleryItems, allies } = COINPSI_DATA;
+let events = [];
 
 function renderApp() {
   document.getElementById("app").innerHTML = `
@@ -30,18 +39,32 @@ function renderApp() {
   `;
 }
 
-function initApp() {
+async function loadPublishedEvents() {
+  try {
+    events = await getPublishedEvents();
+    renderEventFilters(events);
+    renderEventsList(events);
+    observeReveal();
+  } catch (error) {
+    events = [];
+    renderEventFilters(events);
+    renderEventsError(error.message || "No fue posible cargar los eventos.");
+  }
+}
+
+async function initApp() {
   initHeader();
   initAbout();
   initFooter();
   initContact();
 
-  renderEventsList(events);
   renderGalleryGrid(galleryItems);
 
   initGlobalClickHandlers();
   initFormHandlers();
   observeReveal();
+
+  await loadPublishedEvents();
 }
 
 function initGlobalClickHandlers() {
