@@ -53,6 +53,17 @@ function getModalityLabel(modality) {
   return labels[modality] || "Modalidad por confirmar";
 }
 
+function createWhatsappUrl(event) {
+  const number = String(event.whatsappNumber || "").replace(/\D/g, "");
+  if (!number) return null;
+
+  const message = String(
+    event.whatsappMessage || `Hola, deseo recibir informacion sobre el evento ${event.title || "COINPSI"}.`
+  ).trim();
+
+  return `https://wa.me/${number}?text=${encodeURIComponent(message)}`;
+}
+
 function mapPublishedEvent(event) {
   const date = getPanamaDate(event.startAt);
   if (!date) return null;
@@ -67,7 +78,8 @@ function mapPublishedEvent(event) {
     type: event.eventType || "Evento",
     tagline: "Actividad publicada por COINPSI.",
     description: event.description || "",
-    capacity: getModalityLabel(event.modality)
+    capacity: getModalityLabel(event.modality),
+    whatsappUrl: createWhatsappUrl(event)
   };
 }
 
