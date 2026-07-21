@@ -85,7 +85,7 @@ function renderWhatsappAction(event) {
       rel="noopener noreferrer"
       aria-label="Contactar por WhatsApp sobre ${escapeHtml(event.title)}"
       title="Contactar por WhatsApp"
-    >${icon("WhatsApp")}</a>
+    >${icon("Phone")}</a>
   `;
 }
 
