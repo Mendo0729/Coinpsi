@@ -8,9 +8,7 @@ import {
   renderEventFilters,
   renderEventsError,
   renderEventsShell,
-  renderEventsList,
-  eventFormTemplate,
-  showRsvpConfirmation
+  renderEventsList
 } from "./components/events.js";
 import { renderGalleryShell, renderGalleryGrid, lightboxTemplate } from "./components/gallery.js";
 import { renderAllies } from "./components/allies.js";
@@ -83,13 +81,6 @@ function initGlobalClickHandlers() {
       return;
     }
 
-    const rsvpBtn = event.target.closest(".event-rsvp");
-    if (rsvpBtn) {
-      const selectedEvent = events.find((item) => item.id === rsvpBtn.dataset.eventId);
-      if (selectedEvent) openModal(eventFormTemplate(selectedEvent));
-      return;
-    }
-
     const galleryCard = event.target.closest(".gallery-card");
     if (galleryCard) {
       const item = galleryItems.find((entry) => entry.id === galleryCard.dataset.galleryId);
@@ -118,37 +109,8 @@ function initGlobalClickHandlers() {
 
 function initFormHandlers() {
   document.addEventListener("submit", (event) => {
-    if (event.target.id === "rsvp-form") handleRsvpSubmit(event);
     if (event.target.id === "contact-form") handleContactSubmit(event);
   });
-}
-
-function handleRsvpSubmit(event) {
-  event.preventDefault();
-  const form = event.target;
-  const selectedEvent = events.find((item) => item.id === form.dataset.eventId);
-  const fullName = form.fullName.value.trim();
-  const email = form.email.value.trim();
-  if (!selectedEvent || !fullName || !email) return;
-
-  const button = form.querySelector("button");
-  button.innerHTML = '<span class="spinner"></span>';
-  button.disabled = true;
-
-  setTimeout(() => {
-    const ticket = `COINPSI-${Math.floor(100000 + Math.random() * 900000)}`;
-    const registrations = JSON.parse(localStorage.getItem("coinpsi_event_registrations") || "[]");
-    registrations.push({
-      eventId: selectedEvent.id,
-      eventTitle: selectedEvent.title,
-      fullName,
-      email,
-      ticket,
-      timestamp: new Date().toISOString()
-    });
-    localStorage.setItem("coinpsi_event_registrations", JSON.stringify(registrations));
-    showRsvpConfirmation(selectedEvent, fullName, email, ticket);
-  }, 1200);
 }
 
 function openModal(html) {
