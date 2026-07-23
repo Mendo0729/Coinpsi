@@ -1,1 +1,146 @@
 /* Ajustes responsivos exclusivos para la sección Quiénes somos. */
+
+.about-section .split-grid,
+.about-section .section-copy,
+.about-section .tabs-panel,
+.about-section .tabs,
+.about-section .tab-content {
+  min-width: 0;
+}
+
+.about-section .split-grid,
+.about-section .section-copy,
+.about-section .tabs-panel {
+  width: 100%;
+}
+
+@media (max-width: 1024px) {
+  .about-section .split-grid {
+    gap: 40px;
+  }
+}
+
+@media (max-width: 640px) {
+  .about-section .split-grid {
+    gap: 36px;
+  }
+
+  .about-section .section-copy {
+    gap: 20px;
+  }
+
+  .about-section .section-copy h2 {
+    max-width: 100%;
+    font-size: clamp(1.8rem, 8vw, 2.1rem);
+    line-height: 1.1;
+    overflow-wrap: anywhere;
+  }
+
+  .about-section .section-copy p {
+    max-width: 100%;
+    font-size: 1rem;
+    line-height: 1.65;
+  }
+
+  .about-section .section-copy .muted {
+    font-size: 0.95rem;
+  }
+
+  .about-section .micro-counters {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    padding-top: 20px;
+  }
+
+  .about-section .micro-counters > div {
+    min-width: 0;
+  }
+
+  .about-section .micro-counters strong {
+    font-size: 1.55rem;
+    line-height: 1.05;
+  }
+
+  .about-section .micro-counters span {
+    display: block;
+    margin-top: 6px;
+    font-size: 0.68rem;
+    line-height: 1.45;
+    letter-spacing: 0.08em;
+    overflow-wrap: anywhere;
+  }
+
+  .about-section .tabs-panel {
+    gap: 20px;
+  }
+
+  .about-section .tabs {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 4px;
+    overflow: visible;
+  }
+
+  .about-section .tab-button {
+    width: 100%;
+    min-width: 0;
+    min-height: 52px;
+    padding: 10px 8px;
+    gap: 7px;
+    font-size: 0.8rem;
+    line-height: 1.2;
+    text-align: center;
+  }
+
+  .about-section .tab-button span {
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+
+  .about-section .tab-content {
+    min-height: 0;
+    padding: 24px 20px;
+    border-radius: 20px;
+  }
+
+  .about-section .tab-pane {
+    gap: 20px;
+  }
+
+  .about-section .tab-pane h3 {
+    font-size: 1.15rem;
+  }
+
+  .about-section .tab-pane p {
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.65;
+  }
+
+  .about-section .commitment {
+    align-items: flex-start;
+    gap: 12px;
+    padding: 14px;
+    line-height: 1.45;
+    letter-spacing: 0.06em;
+  }
+
+  .about-section .value-card {
+    min-width: 0;
+    padding: 16px;
+  }
+}
+
+@media (max-width: 380px) {
+  .about-section .section-copy h2 {
+    font-size: 1.7rem;
+  }
+
+  .about-section .micro-counters strong {
+    font-size: 1.4rem;
+  }
+
+  .about-section .tab-button {
+    font-size: 0.75rem;
+  }
+}
