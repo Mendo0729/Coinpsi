@@ -105,13 +105,16 @@ function renderAboutTab(tab = "creemos") {
       </div>
     `,
     valores: `
-      <div class="values-grid fade-in">
+      <div class="values-grid fade-in" aria-label="Valores institucionales de COINPSI">
         ${[
-          ["Honestidad y transparencia", "Actuamos con integridad y coherencia, promoviendo relaciones basadas en la confianza, la objetividad y una comunicación clara.", "ShieldCheck"],
-          ["Respeto y confidencialidad", "Reconocemos la dignidad y singularidad de cada persona, protegiendo su privacidad con estricto apego a la ética profesional.", "CheckCircle"],
-          ["Dedicación y excelencia", "Desarrollamos cada proyecto con compromiso, profesionalismo y vocación de servicio, buscando calidad y mejora continua.", "Award"],
-          ["Innovación e investigación", "Generamos y aplicamos conocimiento científico para responder con soluciones actuales a los desafíos del desarrollo humano.", "Compass"]
-        ].map(([name, desc, iconName]) => `<div class="value-card"><span>${icon(iconName)}</span><div><strong>${name}</strong><p>${desc}</p></div></div>`).join("")}
+          ["Honestidad y transparencia", "ShieldCheck"],
+          ["Responsabilidad social", "HeartHandshake"],
+          ["Dedicación y excelencia", "Award"],
+          ["Respeto y confidencialidad", "Shield"],
+          ["Comunicación asertiva", "MessageSquareCode"],
+          ["Innovación e investigación", "Compass"],
+          ["Trabajo colaborativo", "Users"]
+        ].map(([name, iconName]) => `<div class="value-card value-name-card"><span>${icon(iconName)}</span><strong>${name}</strong></div>`).join("")}
       </div>
     `
   };
