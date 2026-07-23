@@ -14,6 +14,16 @@
   width: 100%;
 }
 
+.about-section .value-name-card {
+  min-height: 82px;
+  align-items: center;
+}
+
+.about-section .value-name-card strong {
+  color: var(--navy-900);
+  font: 800 0.95rem / 1.35 var(--font-display);
+}
+
 @media (max-width: 1024px) {
   .about-section .split-grid {
     gap: 40px;
@@ -128,6 +138,14 @@
   .about-section .value-card {
     min-width: 0;
     padding: 16px;
+  }
+
+  .about-section .value-name-card {
+    min-height: 68px;
+  }
+
+  .about-section .value-name-card strong {
+    font-size: 0.9rem;
   }
 }
 
