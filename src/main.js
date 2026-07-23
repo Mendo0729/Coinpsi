@@ -5,6 +5,7 @@ import { renderAbout, initAbout } from "./components/about.js";
 import { renderServices, openServiceModal } from "./components/services.js";
 import { renderTomateUnBreak, handleTomateUnBreakClick } from "./components/tomateUnBreak.js";
 import {
+  getInitialEventView,
   renderEventFilters,
   renderEventsError,
   renderEventsShell,
@@ -26,6 +27,7 @@ import { getPublishedGalleryItems } from "./services/gallery.service.js";
 
 const { services, allies } = COINPSI_DATA;
 let events = [];
+let eventView = null;
 let galleryItems = [];
 
 function renderApp() {
@@ -46,15 +48,23 @@ function renderApp() {
   `;
 }
 
+function renderEventCalendar() {
+  if (!eventView) eventView = getInitialEventView(events);
+  renderEventFilters(events, eventView);
+  const pagination = renderEventsList(events, eventView);
+  eventView.page = pagination.page;
+  observeReveal();
+}
+
 async function loadPublishedEvents() {
   try {
     events = await getPublishedEvents();
-    renderEventFilters(events);
-    renderEventsList(events);
-    observeReveal();
+    eventView = getInitialEventView(events);
+    renderEventCalendar();
   } catch (error) {
     events = [];
-    renderEventFilters(events);
+    eventView = getInitialEventView(events);
+    renderEventFilters(events, eventView);
     renderEventsError(error.message || "No fue posible cargar los eventos.");
   }
 }
@@ -116,12 +126,12 @@ function initGlobalClickHandlers() {
       return;
     }
 
-    const eventFilter = event.target.closest("[data-event-filter]");
-    if (eventFilter) {
-      document.querySelectorAll("[data-event-filter]").forEach((btn) => btn.classList.remove("active"));
-      eventFilter.classList.add("active");
-      renderEventsList(events, eventFilter.dataset.eventFilter);
-      observeReveal();
+    const eventPageButton = event.target.closest("[data-event-page]");
+    if (eventPageButton && eventView) {
+      const direction = eventPageButton.dataset.eventPage;
+      eventView.page += direction === "next" ? 1 : -1;
+      renderEventCalendar();
+      document.getElementById("eventos")?.scrollIntoView({ behavior: "smooth", block: "start" });
       return;
     }
 
@@ -138,6 +148,17 @@ function initGlobalClickHandlers() {
 function initFormHandlers() {
   document.addEventListener("submit", (event) => {
     if (event.target.id === "contact-form") handleContactSubmit(event);
+  });
+
+  document.addEventListener("change", (event) => {
+    if (event.target.id !== "event-month-select" || !eventView) return;
+
+    const month = Number(event.target.value);
+    if (!Number.isInteger(month) || month < 1 || month > 12) return;
+
+    eventView.month = month;
+    eventView.page = 1;
+    renderEventCalendar();
   });
 }
 
