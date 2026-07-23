@@ -48,6 +48,8 @@ web_modules/
 .env
 .env.*
 !.env.example
+!.env.development.example
+!.env.production.example
 
 # Package manager files
 .npm
