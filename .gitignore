@@ -44,12 +44,9 @@ web_modules/
 .stylelintcache
 *.tsbuildinfo
 
-# Environment files
+# Environment files: local only
 .env
 .env.*
-!.env.example
-!.env.development.example
-!.env.production.example
 
 # Package manager files
 .npm
