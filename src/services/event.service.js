@@ -1,4 +1,6 @@
-const API_URL = "http://localhost:3002/api/v1/events";
+import { API_BASE_URL } from "../config.js";
+
+const API_URL = `${API_BASE_URL}/api/v1/events`;
 const PANAMA_TIME_ZONE = "America/Panama";
 
 function getPanamaDate(value) {
