@@ -10,14 +10,23 @@ import {
   renderEventsShell,
   renderEventsList
 } from "./components/events.js";
-import { renderGalleryShell, renderGalleryGrid, lightboxTemplate } from "./components/gallery.js";
+import {
+  lightboxTemplate,
+  renderGalleryEmpty,
+  renderGalleryError,
+  renderGalleryFilters,
+  renderGalleryGrid,
+  renderGalleryShell
+} from "./components/gallery.js";
 import { renderAllies } from "./components/allies.js";
 import { renderContact, initContact, handleContactSubmit } from "./components/contact.js";
 import { renderFooter, initFooter } from "./components/footer.js";
 import { getPublishedEvents } from "./services/event.service.js";
+import { getPublishedGalleryItems } from "./services/gallery.service.js";
 
-const { services, galleryItems, allies } = COINPSI_DATA;
+const { services, allies } = COINPSI_DATA;
 let events = [];
+let galleryItems = [];
 
 function renderApp() {
   document.getElementById("app").innerHTML = `
@@ -50,19 +59,38 @@ async function loadPublishedEvents() {
   }
 }
 
+async function loadPublishedGallery() {
+  try {
+    galleryItems = await getPublishedGalleryItems();
+    renderGalleryFilters(galleryItems);
+
+    if (galleryItems.length) {
+      renderGalleryGrid(galleryItems);
+      observeReveal();
+    } else {
+      renderGalleryEmpty();
+    }
+  } catch (error) {
+    galleryItems = [];
+    renderGalleryFilters(galleryItems);
+    renderGalleryError(error.message || "No fue posible cargar la galeria.");
+  }
+}
+
 async function initApp() {
   initHeader();
   initAbout();
   initFooter();
   initContact();
 
-  renderGalleryGrid(galleryItems);
-
   initGlobalClickHandlers();
   initFormHandlers();
   observeReveal();
 
-  await loadPublishedEvents();
+  await Promise.all([
+    loadPublishedEvents(),
+    loadPublishedGallery()
+  ]);
 }
 
 function initGlobalClickHandlers() {
