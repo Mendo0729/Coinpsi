@@ -1,0 +1,36 @@
+/* Ajustes visuales de la sección de contacto */
+
+.social-links .social-link-disabled {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--slate-100);
+  border-radius: 12px;
+  color: var(--slate-300);
+  background: var(--slate-50);
+  cursor: not-allowed;
+}
+
+.social-note {
+  display: block;
+  margin-top: 10px;
+  color: var(--slate-400);
+  font-size: 0.72rem;
+}
+
+.contact-item a {
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 640px) {
+  .contact-list {
+    gap: 20px;
+  }
+
+  .social-note {
+    max-width: 220px;
+    line-height: 1.5;
+  }
+}
