@@ -172,13 +172,41 @@ export const COINPSI_DATA = {
     }
   ],
   allies: [
-    { name: "Universidad de la Salud", logoUrl: "https://picsum.photos/seed/u1/120/60" },
-    { name: "Banco Financiero Continental", logoUrl: "https://picsum.photos/seed/b1/120/60" },
-    { name: "Industrias Sigma", logoUrl: "https://picsum.photos/seed/i1/120/60" },
-    { name: "Cámara de Comercio", logoUrl: "https://picsum.photos/seed/c1/120/60" },
-    { name: "Seguros VidaSana", logoUrl: "https://picsum.photos/seed/s1/120/60" },
-    { name: "Colegio AngloAmericano", logoUrl: "https://picsum.photos/seed/co1/120/60" },
-    { name: "Ministerio de Desarrollo", logoUrl: "https://picsum.photos/seed/m1/120/60" },
-    { name: "Red Médica Bienestar", logoUrl: "https://picsum.photos/seed/r1/120/60" }
+    {
+      name: "Universidad Tecnológica de Panamá",
+      logoUrl: "./src/assets/images/utp.jpg"
+    },
+    {
+      name: "Maxum",
+      logoUrl: "./src/assets/images/MAXUM-1.png"
+    },
+    {
+      name: "EDIOACC",
+      logoUrl: "./src/assets/images/Logo-edioacc-png.png"
+    },
+    {
+      name: "Elbros",
+      logoUrl: "./src/assets/images/elbros_logo.jpg"
+    },
+    {
+      name: "Atlantic Plaza",
+      logoUrl: "./src/assets/images/atlantic-plaza-logo.png"
+    },
+    {
+      name: "MAPFRE",
+      logoUrl: "./src/assets/images/Mapfre-logo.png"
+    },
+    {
+      name: "Hormigón Express",
+      logoUrl: "./src/assets/images/hormigon-express.jpg"
+    },
+    {
+      name: "CCT",
+      logoUrl: "./src/assets/images/logocct.png"
+    },
+    {
+      name: "Zona Libre de Colón",
+      logoUrl: "./src/assets/images/zona-libre.png"
+    }
   ]
 };
