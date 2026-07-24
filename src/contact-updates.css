@@ -24,6 +24,33 @@
   overflow-wrap: anywhere;
 }
 
+.footer-contact a {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  color: var(--slate-500);
+  line-height: 1.5;
+  transition: color 0.25s ease;
+}
+
+.footer-contact a:hover {
+  color: var(--blue-500);
+}
+
+.footer-contact a > .icon {
+  flex: 0 0 auto;
+  color: var(--blue-500);
+}
+
+.footer-contact a > span {
+  display: inline;
+  color: inherit;
+}
+
+.footer-brand .social-note {
+  margin-top: -6px;
+}
+
 @media (max-width: 640px) {
   .contact-list {
     gap: 20px;
@@ -32,5 +59,9 @@
   .social-note {
     max-width: 220px;
     line-height: 1.5;
+  }
+
+  .footer-contact a {
+    align-items: center;
   }
 }
