@@ -1,6 +1,13 @@
 import { icon } from "../icons.js";
 import { logoTemplate } from "../utils.js";
 
+const WHATSAPP_NUMBER = "50760000000";
+const WHATSAPP_DISPLAY = "+507 6000-0000";
+const WHATSAPP_MESSAGE = encodeURIComponent(
+  "Hola, deseo recibir información sobre los servicios de COINPSI."
+);
+const INSTAGRAM_URL = "https://www.instagram.com/coinpsi?igsh=MXYxbXZkaW85N3FhOQ==";
+
 export function renderFooter() {
   return `
     <footer id="main-footer" class="footer">
@@ -10,7 +17,11 @@ export function renderFooter() {
           <div class="footer-brand">
             ${logoTemplate("small")}
             <p>Corporación de Investigaciones Psicológicas. Comprometidos con el desarrollo de metodologías científicas para fomentar la felicidad, bienestar integral y resiliencia organizacional de forma colectiva.</p>
-            <div class="social-links">${["Facebook", "Linkedin", "Instagram", "Twitter"].map((name) => `<a href="#${name.toLowerCase().slice(0, 2)}" aria-label="${name}">${icon(name)}</a>`).join("")}</div>
+            <div class="social-links">
+              <span class="social-link-disabled" aria-label="LinkedIn próximamente" title="LinkedIn próximamente">${icon("Linkedin")}</span>
+              <a href="${INSTAGRAM_URL}" target="_blank" rel="noopener noreferrer" aria-label="Instagram de COINPSI" title="Instagram">${icon("Instagram")}</a>
+            </div>
+            <small class="social-note">LinkedIn estará disponible próximamente.</small>
           </div>
           <div>
             <h4>Menú Rápido</h4>
@@ -25,9 +36,12 @@ export function renderFooter() {
           <div>
             <h4>Información de Atención</h4>
             <div class="footer-contact">
-              <span>${icon("MapPin")}Edificio Corporativo Alianza, Piso 7, Oficina 704. Eje Central Financiero.</span>
-              <span>${icon("Phone")}+57 300 456 7890</span>
-              <span>${icon("Mail")}contacto@coinpsi.org</span>
+              <a href="https://wa.me/${WHATSAPP_NUMBER}?text=${WHATSAPP_MESSAGE}" target="_blank" rel="noopener noreferrer">
+                ${icon("Phone")}<span>WhatsApp: ${WHATSAPP_DISPLAY}</span>
+              </a>
+              <a href="mailto:contacto@coinpsi.com">
+                ${icon("Mail")}<span>contacto@coinpsi.com</span>
+              </a>
             </div>
           </div>
         </div>
