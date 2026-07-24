@@ -1,8 +1,15 @@
 import { icon } from "../icons.js";
 import { escapeHtml } from "../utils.js";
 
-function contactInfoItem(iconName, title, main, sub) {
-  return `<div class="contact-item"><span>${icon(iconName)}</span><div><h4>${title}</h4>${main}<small>${sub}</small></div></div>`;
+const WHATSAPP_NUMBER = "50760000000";
+const WHATSAPP_DISPLAY = "+507 6000-0000";
+const WHATSAPP_MESSAGE = encodeURIComponent(
+  "Hola, deseo recibir información sobre los servicios de COINPSI."
+);
+const INSTAGRAM_URL = "https://www.instagram.com/coinpsi?igsh=MXYxbXZkaW85N3FhOQ==";
+
+function contactInfoItem(iconName, title, main, sub = "") {
+  return `<div class="contact-item"><span>${icon(iconName)}</span><div><h4>${title}</h4>${main}${sub ? `<small>${sub}</small>` : ""}</div></div>`;
 }
 
 export function renderContact(services) {
@@ -13,39 +20,50 @@ export function renderContact(services) {
         <div class="contact-info reveal">
           <span class="eyebrow"><span></span>FORMULARIO DE CONTACTO</span>
           <h2>Iniciemos un Diálogo de Bienestar</h2>
-          <p>Toda consulta es gestionada con absoluta confidencialidad y rigor ético profesional por parte de nuestro equipo. Escríbenos o llámanos hoy mismo.</p>
+          <p>Toda consulta es gestionada con absoluta confidencialidad y rigor ético profesional por parte de nuestro equipo. Escríbenos por WhatsApp o correo electrónico.</p>
           <div class="contact-list">
-            ${contactInfoItem("Phone", "Teléfono de atención", '<a href="tel:+573004567890">+57 300 456 7890</a>', "Lunes a Viernes: 8:00 AM - 6:00 PM")}
-            ${contactInfoItem("Mail", "Correo Institucional", '<a href="mailto:contacto@coinpsi.org">contacto@coinpsi.org</a>', "Consultas corporativas y presupuestos")}
-            ${contactInfoItem("MapPin", "Dirección Sede Principal", "<strong>Edificio Corporativo Alianza, Piso 7, Oficina 704</strong>", "Eje Central Financiero, Ciudad de Origen")}
+            ${contactInfoItem(
+              "PhoneCall",
+              "Contacto por WhatsApp",
+              `<a href="https://wa.me/${WHATSAPP_NUMBER}?text=${WHATSAPP_MESSAGE}" target="_blank" rel="noopener noreferrer">${WHATSAPP_DISPLAY}</a>`,
+              "Atención y consultas sobre nuestros servicios"
+            )}
+            ${contactInfoItem(
+              "Mail",
+              "Correo institucional",
+              '<a href="mailto:contacto@coinpsi.com">contacto@coinpsi.com</a>',
+              "Consultas corporativas y solicitudes de información"
+            )}
           </div>
           <div class="social-block">
-            <h4>Redes Sociales</h4>
+            <h4>Redes sociales</h4>
             <div class="social-links">
-              ${["Facebook", "Linkedin", "Instagram", "Twitter"].map((name) => `<a href="#${name.toLowerCase()}" aria-label="${name}">${icon(name)}</a>`).join("")}
+              <span class="social-link-disabled" aria-label="LinkedIn próximamente" title="LinkedIn próximamente">${icon("Linkedin")}</span>
+              <a href="${INSTAGRAM_URL}" target="_blank" rel="noopener noreferrer" aria-label="Instagram de COINPSI" title="Instagram">${icon("Instagram")}</a>
             </div>
+            <small class="social-note">LinkedIn estará disponible próximamente.</small>
           </div>
         </div>
         <div class="contact-form-zone reveal delay-1">
           <div class="form-card">
             <h3>Envía tu Consulta Profesional</h3>
             <form id="contact-form" novalidate>
-              <label>Nombre Completo<input name="fullName" type="text" placeholder="Ej. Dr. Andrés Gamarra" /></label>
+              <label>Nombre Completo<input name="fullName" type="text" placeholder="Ej. Ana Pérez" /></label>
               <div class="form-row">
                 <label>Correo Electrónico<input name="email" type="email" placeholder="correo@empresa.com" /></label>
-                <label>Teléfono de Contacto<input name="phone" type="text" placeholder="Ej. +57 300 456 7890" /></label>
+                <label>Teléfono de Contacto<input name="phone" type="text" placeholder="Ej. +507 6000-0000" /></label>
               </div>
               <label>Tipo de servicio requerido
                 <select name="serviceType">
                   ${services.map((service) => `<option value="${service.id}">${service.title}</option>`).join("")}
                 </select>
               </label>
-              <label>Mensaje / Consulta específica<textarea name="message" rows="4" placeholder="Describe los objetivos o contexto de tu organización o duda..."></textarea></label>
+              <label>Mensaje / Consulta específica<textarea name="message" rows="4" placeholder="Describe los objetivos o el motivo de tu consulta..."></textarea></label>
               <button class="btn btn-primary form-submit" type="submit"><span>Enviar consulta</span>${icon("Send")}</button>
             </form>
             <div id="contact-success" class="success-box hidden">
               ${icon("CheckCircle2")}
-              <div><strong>¡Consulta recibida con éxito!</strong><span>Un psicólogo de nuestro comité científico evaluará tu solicitud y se comunicará contigo en menos de 24 horas hábiles.</span></div>
+              <div><strong>¡Consulta recibida con éxito!</strong><span>Nuestro equipo revisará tu solicitud y se comunicará contigo lo antes posible.</span></div>
               <button type="button">Cerrar</button>
             </div>
           </div>
