@@ -7,10 +7,13 @@ export const COINPSI_DATA = {
       longDescription: "Acompañamos a empresas y organizaciones en la construcción de espacios laborales más humanos, colaborativos y saludables. Partimos de la relación entre bienestar individual y bienestar colectivo para diseñar intervenciones ajustadas a las necesidades reales de cada organización.",
       iconName: "Briefcase",
       benefits: [
-        "Diagnóstico organizacional mediante observación, entrevistas, cuestionarios y análisis de información.",
-        "Evaluación psicolaboral para selección de personal, con captación de candidatos, entrevistas por competencias, pruebas psicológicas, informes y recomendaciones.",
-        "Capacitaciones en habilidades blandas, bienestar y cultura, además de talleres generales y actividades de cuerdas altas y bajas.",
-        "Programa de bienestar y acompañamiento a colaboradores con orientación psicológica, atención ante crisis, referencia a especialistas y seguimiento confidencial."
+        "Diagnóstico de clima organizacional y riesgos psicosociales mediante entrevistas, cuestionarios y análisis de resultados.",
+        "Reclutamiento y evaluación psicolaboral con entrevistas por competencias, pruebas psicológicas e informes de selección.",
+        "Talleres prácticos sobre liderazgo, comunicación, trabajo en equipo, manejo del estrés y bienestar emocional.",
+        "Seminarios corporativos sobre salud mental, cultura organizacional, prevención de riesgos y desarrollo humano.",
+        "Charlas de sensibilización adaptadas a las necesidades y objetivos de cada empresa u organización.",
+        "Programas de bienestar y acompañamiento psicológico para colaboradores, incluyendo orientación, atención en crisis y referencia a especialistas.",
+        "Actividades de integración y fortalecimiento de equipos, incluyendo dinámicas de cuerdas altas y bajas."
       ]
     },
     {
