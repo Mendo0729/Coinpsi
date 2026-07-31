@@ -114,7 +114,8 @@ function renderContent(content) {
 
 export function knowledgeModalTemplate(post) {
   return `
-    <div class="modal-overlay knowledge-modal-overlay" data-close-modal>
+    <div class="modal-shell knowledge-modal-overlay">
+      <button class="modal-backdrop" data-close-modal aria-label="Cerrar cápsula"></button>
       <article class="modal-card knowledge-reader" role="dialog" aria-modal="true" aria-labelledby="knowledge-reader-title">
         <button class="modal-close knowledge-reader-close" data-close-modal aria-label="Cerrar">×</button>
         ${post.coverImageUrl ? `
