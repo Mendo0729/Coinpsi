@@ -4,7 +4,7 @@ import { logoTemplate } from "../utils.js";
 const navLinks = [
   ["Quiénes Somos", "#quienes-somos"],
   ["Servicios", "#servicios"],
-  ["Tómate un Break", "#dream-week"],
+  ["Responsabilidad social", "#dream-week"],
   ["Eventos", "#eventos"],
   ["Galería", "#galeria"]
 ];
