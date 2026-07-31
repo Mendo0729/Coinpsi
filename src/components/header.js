@@ -5,6 +5,7 @@ const navLinks = [
   ["Quiénes Somos", "#quienes-somos"],
   ["Servicios", "#servicios"],
   ["Responsabilidad social", "#responsabilidad-social"],
+  ["Espacio del Saber", "#espacio-del-saber"],
   ["Eventos", "#eventos"],
   ["Galería", "#galeria"]
 ];
