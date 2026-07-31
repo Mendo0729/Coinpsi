@@ -19,16 +19,25 @@ import {
   renderGalleryGrid,
   renderGalleryShell
 } from "./components/gallery.js";
+import {
+  knowledgeModalTemplate,
+  renderKnowledgeEmpty,
+  renderKnowledgeError,
+  renderKnowledgePosts,
+  renderKnowledgeShell
+} from "./components/knowledge.js";
 import { renderAllies } from "./components/allies.js";
 import { renderContact, initContact, handleContactSubmit } from "./components/contact.js";
 import { renderFooter, initFooter } from "./components/footer.js";
 import { getPublishedEvents } from "./services/event.service.js";
 import { getPublishedGalleryItems } from "./services/gallery.service.js";
+import { getPublishedKnowledgePosts } from "./services/knowledge.service.js";
 
 const { services, allies } = COINPSI_DATA;
 let events = [];
 let eventView = null;
 let galleryItems = [];
+let knowledgePosts = [];
 
 function renderApp() {
   document.getElementById("app").innerHTML = `
@@ -38,6 +47,7 @@ function renderApp() {
       ${renderAbout()}
       ${renderServices(services)}
       ${renderTomateUnBreak()}
+      ${renderKnowledgeShell()}
       ${renderEventsShell()}
       ${renderGalleryShell()}
       ${renderAllies(allies)}
@@ -87,6 +97,22 @@ async function loadPublishedGallery() {
   }
 }
 
+async function loadPublishedKnowledge() {
+  try {
+    knowledgePosts = await getPublishedKnowledgePosts();
+
+    if (knowledgePosts.length) {
+      renderKnowledgePosts(knowledgePosts);
+      observeReveal();
+    } else {
+      renderKnowledgeEmpty();
+    }
+  } catch (error) {
+    knowledgePosts = [];
+    renderKnowledgeError(error.message || "No fue posible cargar Espacio del Saber.");
+  }
+}
+
 async function initApp() {
   initHeader();
   initAbout();
@@ -99,7 +125,8 @@ async function initApp() {
 
   await Promise.all([
     loadPublishedEvents(),
-    loadPublishedGallery()
+    loadPublishedGallery(),
+    loadPublishedKnowledge()
   ]);
 }
 
@@ -116,6 +143,13 @@ function initGlobalClickHandlers() {
     if (serviceBtn) {
       const service = services.find((item) => item.id === serviceBtn.dataset.serviceId);
       if (service) openModal(openServiceModal(service));
+      return;
+    }
+
+    const knowledgeCard = event.target.closest("[data-knowledge-id]");
+    if (knowledgeCard) {
+      const post = knowledgePosts.find((item) => item.id === knowledgeCard.dataset.knowledgeId);
+      if (post) openModal(knowledgeModalTemplate(post));
       return;
     }
 
