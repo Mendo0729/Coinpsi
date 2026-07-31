@@ -9,7 +9,7 @@ const benefits = [
 
 export function renderTomateUnBreak() {
   return `
-    <section id="dream-week" class="section dream-section">
+    <section id="responsabilidad-social" class="section dream-section">
       <div class="container">
         <div class="dream-intro reveal">
           <div class="section-copy dream-heading">
