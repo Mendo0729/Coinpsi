@@ -25,9 +25,9 @@ function mapKnowledgePost(post) {
     content: post.content || "",
     coverImageUrl: post.coverImageUrl || "",
     authorName: post.authorName || "Equipo COINPSI",
-    isFeatured: Boolean(post.isFeatured),
     publishedAt: post.publishedAt || null,
     publishedDate: formatPublishedDate(post.publishedAt),
+    displayOrder: Number(post.displayOrder || 0),
     category: {
       id: String(post.category?.id || ""),
       name: post.category?.name || "Conocimiento",
@@ -61,5 +61,5 @@ export async function getPublishedKnowledgePosts() {
     throw error;
   }
 
-  return (data.posts || []).map(mapKnowledgePost);
+  return (data.posts || []).map(mapKnowledgePost).slice(0, 10);
 }

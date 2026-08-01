@@ -1,21 +1,12 @@
 import { icon } from "../icons.js";
 import { escapeHtml } from "../utils.js";
 
-function renderCover(post) {
-  if (post.coverImageUrl) {
-    return `
-      <div class="knowledge-card-cover">
-        <img src="${escapeHtml(post.coverImageUrl)}" alt="Portada de ${escapeHtml(post.title)}" loading="lazy" />
-      </div>
-    `;
-  }
+export const KNOWLEDGE_PAGE_SIZE = 2;
 
-  return `
-    <div class="knowledge-card-cover knowledge-card-placeholder" aria-hidden="true">
-      ${icon("Sparkles")}
-      <span>${escapeHtml(post.category.name)}</span>
-    </div>
-  `;
+function getContentPreview(content, maxLength = 620) {
+  const normalized = String(content || "").replace(/\s+/g, " ").trim();
+  if (normalized.length <= maxLength) return normalized;
+  return `${normalized.slice(0, maxLength).trimEnd()}…`;
 }
 
 export function renderKnowledgeShell() {
@@ -29,7 +20,7 @@ export function renderKnowledgeShell() {
           </div>
           <p>Ideas, herramientas y reflexiones creadas para acercar el conocimiento psicológico a nuestra comunidad.</p>
         </div>
-        <div id="knowledge-list" class="knowledge-grid">${renderKnowledgeLoading()}</div>
+        <div id="knowledge-list" class="knowledge-list">${renderKnowledgeLoading()}</div>
       </div>
     </section>
   `;
@@ -68,35 +59,67 @@ export function renderKnowledgeError(message) {
   `;
 }
 
-export function renderKnowledgePosts(posts) {
+function renderKnowledgeCard(post) {
+  return `
+    <article class="knowledge-card reveal">
+      <div class="knowledge-card-topline">
+        <span class="knowledge-category">${escapeHtml(post.category.name)}</span>
+        <span class="knowledge-card-date">${escapeHtml(post.publishedDate)}</span>
+      </div>
+
+      <h3>${escapeHtml(post.title)}</h3>
+      <p class="knowledge-card-summary">${escapeHtml(post.summary)}</p>
+      <p class="knowledge-card-text">${escapeHtml(getContentPreview(post.content))}</p>
+
+      <footer class="knowledge-card-footer">
+        <span class="knowledge-card-author">Por ${escapeHtml(post.authorName)}</span>
+        <button class="knowledge-read-button" type="button" data-knowledge-id="${escapeHtml(post.id)}">
+          Leer cápsula completa ${icon("ArrowRight")}
+        </button>
+      </footer>
+    </article>
+  `;
+}
+
+function renderPagination(page, totalPages, totalItems) {
+  if (totalPages <= 1) return "";
+
+  return `
+    <nav class="knowledge-pagination" aria-label="Paginación de Espacio del Saber">
+      <button type="button" data-knowledge-page="previous" ${page <= 1 ? "disabled" : ""}>Anterior</button>
+      <span>Página ${page} de ${totalPages} · ${totalItems} cápsulas</span>
+      <button type="button" data-knowledge-page="next" ${page >= totalPages ? "disabled" : ""}>Siguiente</button>
+    </nav>
+  `;
+}
+
+export function renderKnowledgePosts(posts, requestedPage = 1) {
   const list = document.getElementById("knowledge-list");
-  if (!list) return;
+  if (!list) return { page: 1, totalPages: 1, totalItems: 0 };
 
   if (!posts.length) {
     renderKnowledgeEmpty();
-    return;
+    return { page: 1, totalPages: 1, totalItems: 0 };
   }
 
-  list.innerHTML = posts.map((post) => `
-    <article class="knowledge-card reveal ${post.isFeatured ? "knowledge-card-featured" : ""}" data-knowledge-id="${escapeHtml(post.id)}">
-      ${renderCover(post)}
-      <div class="knowledge-card-body">
-        <div class="knowledge-card-topline">
-          <span class="knowledge-category">${escapeHtml(post.category.name)}</span>
-          ${post.isFeatured ? '<span class="knowledge-highlight">Destacada</span>' : ""}
-        </div>
-        <h3>${escapeHtml(post.title)}</h3>
-        <p>${escapeHtml(post.summary)}</p>
-        <div class="knowledge-card-meta">
-          <span>Por ${escapeHtml(post.authorName)}</span>
-          <span>${escapeHtml(post.publishedDate)}</span>
-        </div>
-        <button class="knowledge-read-button" type="button" data-knowledge-id="${escapeHtml(post.id)}">
-          Leer cápsula ${icon("ArrowRight")}
-        </button>
-      </div>
-    </article>
-  `).join("");
+  const visiblePosts = posts.slice(0, 10);
+  const totalPages = Math.max(1, Math.ceil(visiblePosts.length / KNOWLEDGE_PAGE_SIZE));
+  const page = Math.min(Math.max(1, Number(requestedPage) || 1), totalPages);
+  const start = (page - 1) * KNOWLEDGE_PAGE_SIZE;
+  const pageItems = visiblePosts.slice(start, start + KNOWLEDGE_PAGE_SIZE);
+
+  list.innerHTML = `
+    <div class="knowledge-grid">
+      ${pageItems.map(renderKnowledgeCard).join("")}
+    </div>
+    ${renderPagination(page, totalPages, visiblePosts.length)}
+  `;
+
+  return {
+    page,
+    totalPages,
+    totalItems: visiblePosts.length
+  };
 }
 
 function renderContent(content) {

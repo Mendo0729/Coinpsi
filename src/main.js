@@ -38,6 +38,7 @@ let events = [];
 let eventView = null;
 let galleryItems = [];
 let knowledgePosts = [];
+let knowledgePage = 1;
 
 function renderApp() {
   document.getElementById("app").innerHTML = `
@@ -63,6 +64,12 @@ function renderEventCalendar() {
   renderEventFilters(events, eventView);
   const pagination = renderEventsList(events, eventView);
   eventView.page = pagination.page;
+  observeReveal();
+}
+
+function renderKnowledgePage() {
+  const pagination = renderKnowledgePosts(knowledgePosts, knowledgePage);
+  knowledgePage = pagination.page;
   observeReveal();
 }
 
@@ -100,15 +107,16 @@ async function loadPublishedGallery() {
 async function loadPublishedKnowledge() {
   try {
     knowledgePosts = await getPublishedKnowledgePosts();
+    knowledgePage = 1;
 
     if (knowledgePosts.length) {
-      renderKnowledgePosts(knowledgePosts);
-      observeReveal();
+      renderKnowledgePage();
     } else {
       renderKnowledgeEmpty();
     }
   } catch (error) {
     knowledgePosts = [];
+    knowledgePage = 1;
     renderKnowledgeError(error.message || "No fue posible cargar Espacio del Saber.");
   }
 }
@@ -146,9 +154,17 @@ function initGlobalClickHandlers() {
       return;
     }
 
-    const knowledgeCard = event.target.closest("[data-knowledge-id]");
-    if (knowledgeCard) {
-      const post = knowledgePosts.find((item) => item.id === knowledgeCard.dataset.knowledgeId);
+    const knowledgePageButton = event.target.closest("[data-knowledge-page]");
+    if (knowledgePageButton) {
+      knowledgePage += knowledgePageButton.dataset.knowledgePage === "next" ? 1 : -1;
+      renderKnowledgePage();
+      document.getElementById("espacio-del-saber")?.scrollIntoView({ behavior: "smooth", block: "start" });
+      return;
+    }
+
+    const knowledgeButton = event.target.closest("[data-knowledge-id]");
+    if (knowledgeButton) {
+      const post = knowledgePosts.find((item) => item.id === knowledgeButton.dataset.knowledgeId);
       if (post) openModal(knowledgeModalTemplate(post));
       return;
     }
