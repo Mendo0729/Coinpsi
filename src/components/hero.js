@@ -16,7 +16,7 @@ export function renderHero() {
           <div class="hero-text reveal">
             <span class="eyebrow eyebrow-dark">${icon("Sparkles")}<span>Corporación de Investigaciones Psicológicas</span></span>
             <h1>Transformamos el bienestar psicológico en <span>crecimiento personal, académico y organizacional.</span></h1>
-            <p>Brindamos soluciones integrales de salud mental corporativa, capacitación de habilidades blandas e investigación aplicada para potenciar entornos humanos asertivos, prósperos y felices.</p>
+            <p>Brindamos soluciones integrales de salud mental, capacitación de habilidades blandas e investigación aplicada para potenciar entornos humanos asertivos, prósperos y felices.</p>
             <div class="hero-actions">
               <a id="hero-cta-info" href="#contacto" class="btn btn-light"><span>Solicitar información</span>${icon("ArrowRight")}</a>
               <a id="hero-cta-services" href="#servicios" class="btn btn-ghost"><span>Conocer servicios</span></a>
