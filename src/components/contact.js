@@ -31,7 +31,7 @@ export function renderContact(services) {
             ${contactInfoItem(
               "Mail",
               "Correo institucional",
-              '<a href="mailto:contacto@coinpsi.com">contacto@coinpsi.com</a>',
+              '<a href="mailto:contacto@coinpsi.org">contacto@coinpsi.org</a>',
               "Consultas corporativas y solicitudes de información"
             )}
           </div>
