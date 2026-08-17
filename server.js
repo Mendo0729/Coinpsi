@@ -1,11 +1,21 @@
 const express = require("express");
+const fs = require("fs");
 const path = require("path");
+const { loadSeoConfig, injectSeo } = require("./scripts/render-seo");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+const PROJECT_ROOT = __dirname;
 const API_BASE_URL = String(
   process.env.API_BASE_URL || "http://localhost:3002"
 ).replace(/\/+$/, "");
+
+const indexTemplate = fs.readFileSync(
+  path.join(PROJECT_ROOT, "index.html"),
+  "utf8"
+);
+const seoConfig = loadSeoConfig(PROJECT_ROOT);
+const renderedIndex = injectSeo(indexTemplate, seoConfig);
 
 app.get("/runtime-config.js", (req, res) => {
   res.type("application/javascript");
@@ -15,10 +25,12 @@ app.get("/runtime-config.js", (req, res) => {
   );
 });
 
-app.use(express.static(__dirname));
+app.use(express.static(PROJECT_ROOT, { index: false }));
 
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "index.html"));
+  res.type("html");
+  res.set("Cache-Control", "no-cache");
+  res.send(renderedIndex);
 });
 
 app.listen(PORT, "0.0.0.0", () => {
