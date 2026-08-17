@@ -39,8 +39,8 @@ export function renderFooter() {
               <a href="https://wa.me/${WHATSAPP_NUMBER}?text=${WHATSAPP_MESSAGE}" target="_blank" rel="noopener noreferrer">
                 ${icon("Phone")}<span>WhatsApp: ${WHATSAPP_DISPLAY}</span>
               </a>
-              <a href="mailto:contacto@coinpsi.org">
-                ${icon("Mail")}<span>contacto@coinpsi.org</span>
+              <a href="mailto:info@coinpsi.org">
+                ${icon("Mail")}<span>info@coinpsi.org</span>
               </a>
             </div>
           </div>
