@@ -1,5 +1,6 @@
 const fs = require("fs");
 const path = require("path");
+const { loadSeoConfig, injectSeo } = require("./render-seo");
 
 const projectRoot = path.resolve(__dirname, "..");
 const outputDirectory = path.join(projectRoot, "dist");
@@ -9,6 +10,7 @@ const excludedEntries = new Set([
   "node_modules",
   "dist",
   "scripts",
+  "seo",
   "server.js",
   "package.json",
   "package-lock.json",
@@ -33,6 +35,11 @@ for (const entry of fs.readdirSync(projectRoot, { withFileTypes: true })) {
   );
 }
 
+const seoConfig = loadSeoConfig(projectRoot);
+const indexPath = path.join(outputDirectory, "index.html");
+const indexTemplate = fs.readFileSync(indexPath, "utf8");
+fs.writeFileSync(indexPath, injectSeo(indexTemplate, seoConfig), "utf8");
+
 const apiBaseUrl = String(
   process.env.API_BASE_URL || "https://coinpsi-api.mendotech.lat"
 ).trim().replace(/\/+$/, "");
@@ -54,4 +61,5 @@ fs.writeFileSync(
 );
 
 console.log(`Static build generado en ${outputDirectory}`);
+console.log(`SEO inyectado desde seo/seo.config.json`);
 console.log(`API_BASE_URL=${apiBaseUrl}`);
