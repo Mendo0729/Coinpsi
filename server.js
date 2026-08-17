@@ -25,6 +25,10 @@ app.get("/runtime-config.js", (req, res) => {
   );
 });
 
+app.get("/index.html", (req, res) => {
+  res.redirect(301, "/");
+});
+
 app.use(express.static(PROJECT_ROOT, { index: false }));
 
 app.get("*", (req, res) => {
