@@ -1,0 +1,19 @@
+{
+  "siteName": "COINPSI",
+  "organizationName": "Corporación de Investigaciones Psicológicas",
+  "legalName": "Corporación de Investigaciones Psicológicas, S.A.",
+  "title": "COINPSI | Corporación de Investigaciones Psicológicas",
+  "description": "Corporación especializada en psicología, bienestar emocional, formación, investigación e intervención para personas, organizaciones y comunidades en Panamá.",
+  "socialDescription": "Psicología, bienestar emocional, formación, investigación e intervención para personas, organizaciones y comunidades en Panamá.",
+  "url": "https://coinpsi.org/",
+  "email": "info@coinpsi.org",
+  "language": "es-PA",
+  "locale": "es_PA",
+  "country": "Panamá",
+  "logo": "https://coinpsi.org/src/assets/images/Logo_coinpsi.png",
+  "image": "https://coinpsi.org/src/assets/images/Portada.png",
+  "socialProfiles": [
+    "https://www.instagram.com/coinpsi",
+    "https://www.facebook.com/coinpsi"
+  ]
+}
