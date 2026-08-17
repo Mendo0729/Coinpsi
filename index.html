@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="es">
+<html lang="es-PA">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -40,20 +40,36 @@
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "Organization",
-        "name": "COINPSI",
-        "legalName": "Corporación de Investigaciones Psicológicas, S.A.",
-        "url": "https://coinpsi.org/",
-        "logo": "https://coinpsi.org/src/assets/images/Logo_coinpsi.png",
-        "image": "https://coinpsi.org/src/assets/images/Portada.png",
-        "description": "Corporación especializada en psicología, bienestar emocional, formación, investigación e intervención para personas, organizaciones y comunidades en Panamá.",
-        "email": "contacto@coinpsi.org",
-        "areaServed": {
-          "@type": "Country",
-          "name": "Panamá"
-        },
-        "sameAs": [
-          "https://www.instagram.com/coinpsi"
+        "@graph": [
+          {
+            "@type": "Organization",
+            "@id": "https://coinpsi.org/#organization",
+            "name": "COINPSI",
+            "legalName": "Corporación de Investigaciones Psicológicas, S.A.",
+            "url": "https://coinpsi.org/",
+            "logo": "https://coinpsi.org/src/assets/images/Logo_coinpsi.png",
+            "image": "https://coinpsi.org/src/assets/images/Portada.png",
+            "description": "Corporación especializada en psicología, bienestar emocional, formación, investigación e intervención para personas, organizaciones y comunidades en Panamá.",
+            "email": "contacto@coinpsi.org",
+            "areaServed": {
+              "@type": "Country",
+              "name": "Panamá"
+            },
+            "sameAs": [
+              "https://www.instagram.com/coinpsi",
+              "https://www.facebook.com/coinpsi"
+            ]
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://coinpsi.org/#website",
+            "url": "https://coinpsi.org/",
+            "name": "COINPSI",
+            "publisher": {
+              "@id": "https://coinpsi.org/#organization"
+            },
+            "inLanguage": "es-PA"
+          }
         ]
       }
     </script>
