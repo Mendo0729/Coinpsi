@@ -1,8 +1,8 @@
 import { icon } from "../icons.js";
 import { logoTemplate } from "../utils.js";
 
-const WHATSAPP_NUMBER = "50760000000";
-const WHATSAPP_DISPLAY = "+507 6000-0000";
+const WHATSAPP_NUMBER = "50766449199";
+const WHATSAPP_DISPLAY = "+507 6644-9199";
 const WHATSAPP_MESSAGE = encodeURIComponent(
   "Hola, deseo recibir información sobre los servicios de COINPSI."
 );
