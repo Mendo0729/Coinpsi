@@ -102,33 +102,52 @@
   background: var(--brand-sage-deep);
 }
 
+/* Hero luminoso: azul niebla + verde salvia y tipografía de alto contraste. */
 .hero {
-  background: linear-gradient(125deg, #263f55 0%, #325866 55%, #416858 100%);
+  background: linear-gradient(125deg, #d8e5eb 0%, #c8dde0 48%, #d9ebe2 100%);
+}
+.hero h1 {
+  color: var(--navy-900);
+}
+.hero p {
+  color: #405a68;
+}
+.hero .eyebrow-dark {
+  color: var(--navy-800);
+  background: rgb(255 255 255 / .58);
+  border: 1px solid rgb(53 90 112 / .16);
+}
+.hero .eyebrow-dark .icon {
+  color: var(--brand-sage-deep);
 }
 .orb-left {
-  background: rgb(150 173 200 / .18);
+  background: rgb(150 173 200 / .22);
 }
 .orb-right {
-  background: rgb(165 204 179 / .18);
+  background: rgb(165 204 179 / .24);
+}
+.hero-pattern circle {
+  stroke: #6a919b;
+  opacity: .22;
 }
 .media-glow {
   background: linear-gradient(45deg, var(--brand-blue), var(--brand-sage));
   opacity: .32;
 }
-.hero .eyebrow-dark {
-  color: #e4f2e9;
-}
-.hero p {
-  color: rgb(255 255 255 / .89);
-}
 .hero .btn-light {
-  color: var(--navy-900);
+  color: #fff;
+  background: var(--navy-900);
 }
 .hero .btn-light:hover {
-  background: #eff7f1;
+  background: var(--brand-sage-deep);
+}
+.hero .btn-ghost {
+  color: var(--navy-900);
+  background: rgb(255 255 255 / .5);
+  border: 1px solid rgb(40 68 87 / .2);
 }
 .hero .btn-ghost:hover {
-  background: rgb(165 204 179 / .18);
+  background: rgb(255 255 255 / .78);
 }
 
 .eyebrow,
