@@ -31,8 +31,12 @@ export function sectionHeader(label, title, text) {
 
 export function logoTemplate(size = "large") {
   return `
-    <a href="#hero" class="brand brand-${size}">
-      <img class="brand-logo" src="./src/assets/images/Logo_coinpsi.png" alt="COINPSI Corporación de Investigaciones Psicológicas" />
+    <a href="#hero" class="brand brand-${size}" aria-label="COINPSI - Volver al inicio">
+      <img class="brand-symbol" src="./src/assets/images/coinpsi-symbol.svg" alt="" width="58" height="58" />
+      <span class="brand-wordmark">
+        <strong>COINPSI</strong>
+        <small>Corporación de Investigaciones<br>Psicológicas, S.A.</small>
+      </span>
     </a>
   `;
 }
