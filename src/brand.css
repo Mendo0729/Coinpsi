@@ -1,0 +1,245 @@
+/* COINPSI | Identidad institucional 2026
+ * Azul desaturado #96ADC8 y verde salvia #A5CCB3 según guía del logo.
+ * Los tonos oscuros son derivados de contraste para accesibilidad en web.
+ * Se carga al final para mantener las reglas existentes y facilitar reversión.
+ */
+:root {
+  --brand-blue: #96adc8;
+  --brand-blue-soft: #b0c2da;
+  --brand-sage: #a5ccb3;
+  --brand-sage-soft: #c0dac7;
+  --brand-sage-deep: #436956;
+  --navy-950: #162e40;
+  --navy-900: #284457;
+  --navy-800: #355a70;
+  --blue-500: #456e83;
+  --blue-600: #355a70;
+  --blue-700: #294858;
+  --blue-50: #edf4f7;
+  --accent: var(--brand-sage);
+  --slate-900: #243744;
+  --slate-800: #344754;
+  --slate-700: #52616a;
+  --slate-600: #566872;
+  --slate-500: #647880;
+  --slate-400: #9babb2;
+  --slate-300: #cad6d6;
+  --slate-200: #dde7e6;
+  --slate-150: #e9f0ed;
+  --slate-100: #f0f5f3;
+  --slate-50: #f8faf8;
+  --surface: #f6f9f7;
+}
+
+/* Identificador horizontal: símbolo original + denominación institucional. */
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  min-width: 0;
+  text-decoration: none;
+}
+.brand-symbol {
+  display: block;
+  flex: 0 0 auto;
+  width: 58px;
+  height: 58px;
+  object-fit: contain;
+}
+.brand-wordmark {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  gap: 3px;
+  line-height: 1.1;
+}
+.brand-wordmark strong {
+  font-family: var(--font-display);
+  font-size: 1.45rem;
+  letter-spacing: .10em;
+  font-weight: 500;
+  color: #6785a2;
+}
+.brand-wordmark small {
+  color: var(--navy-800);
+  font-size: .58rem;
+  font-weight: 600;
+  line-height: 1.35;
+  letter-spacing: .015em;
+}
+.brand-small .brand-symbol {
+  width: 68px;
+  height: 68px;
+}
+.brand-small .brand-wordmark strong {
+  font-size: 1.7rem;
+}
+.brand-small .brand-wordmark small {
+  font-size: .65rem;
+}
+
+.site-header {
+  background: rgb(248 250 248 / .94);
+  border-bottom-color: rgb(150 173 200 / .22);
+  backdrop-filter: blur(16px);
+}
+.site-header.scrolled {
+  background: rgb(255 255 255 / .98);
+}
+.desktop-nav a:hover,
+.mobile-drawer a:not(.btn):hover {
+  color: var(--brand-sage-deep);
+}
+.btn-primary {
+  background: var(--blue-500);
+  color: #fff;
+  box-shadow: 0 10px 24px rgb(69 110 131 / .18);
+}
+.btn-primary:hover {
+  background: var(--brand-sage-deep);
+}
+.btn-dark:hover {
+  background: var(--brand-sage-deep);
+}
+
+/* Hero luminoso: azul niebla + verde salvia y tipografía de alto contraste. */
+.hero {
+  background: linear-gradient(125deg, #d8e5eb 0%, #c8dde0 48%, #d9ebe2 100%);
+}
+.hero h1 {
+  color: var(--navy-900);
+}
+.hero p {
+  color: #405a68;
+}
+.hero .eyebrow-dark {
+  color: var(--navy-800);
+  background: rgb(255 255 255 / .58);
+  border: 1px solid rgb(53 90 112 / .16);
+}
+.hero .eyebrow-dark .icon {
+  color: var(--brand-sage-deep);
+}
+.orb-left {
+  background: rgb(150 173 200 / .22);
+}
+.orb-right {
+  background: rgb(165 204 179 / .24);
+}
+.hero-pattern circle {
+  stroke: #6a919b;
+  opacity: .22;
+}
+.media-glow {
+  background: linear-gradient(45deg, var(--brand-blue), var(--brand-sage));
+  opacity: .32;
+}
+.hero .btn-light {
+  color: #fff;
+  background: var(--navy-900);
+}
+.hero .btn-light:hover {
+  background: var(--brand-sage-deep);
+}
+.hero .btn-ghost {
+  color: var(--navy-900);
+  background: rgb(255 255 255 / .5);
+  border: 1px solid rgb(40 68 87 / .2);
+}
+.hero .btn-ghost:hover {
+  background: rgb(255 255 255 / .78);
+}
+
+.eyebrow,
+.text-button,
+.contact-item a:hover,
+.footer-bottom a:hover {
+  color: var(--blue-600);
+}
+.eyebrow > span:not(:last-child):not(.icon),
+.eyebrow.centered > span {
+  background: var(--brand-sage);
+}
+.card-icon,
+.tab-icon,
+.public-knowledge-state-icon {
+  background: #e8f1ea;
+  color: var(--brand-sage-deep);
+}
+.service-card:hover .card-icon,
+.accordion-item.active .accordion-icon {
+  color: #fff;
+  background: var(--brand-sage-deep);
+}
+.badge {
+  color: var(--brand-sage-deep);
+  background: #e6f2ea;
+}
+.section-orb.accent {
+  background: rgb(165 204 179 / .16);
+}
+.footer-line {
+  background: linear-gradient(to right, transparent, var(--brand-blue), var(--brand-sage), transparent);
+}
+.footer-brand .brand {
+  margin-bottom: 12px;
+}
+
+/* Espacio del Saber usa algunos colores absolutos ajenos a las variables del tema. */
+.knowledge-section {
+  background: radial-gradient(circle at 90% 10%, rgb(165 204 179 / .18), transparent 30%),
+              linear-gradient(180deg, #f4f9f6 0%, #fff 100%);
+}
+.knowledge-card {
+  border-color: rgb(150 173 200 / .28);
+  background: linear-gradient(180deg, #f7faf8 0%, #fff 36%);
+}
+.knowledge-card:hover {
+  border-color: rgb(67 105 86 / .38);
+}
+.knowledge-category {
+  background: #e6f2ea;
+  color: var(--brand-sage-deep);
+}
+.knowledge-card h3,
+.knowledge-reader-content h2,
+.public-knowledge-state {
+  color: var(--navy-900);
+}
+.knowledge-read-button,
+.knowledge-pagination button:hover:not(:disabled) {
+  color: var(--blue-600);
+}
+.knowledge-pagination button {
+  color: var(--navy-900);
+}
+.knowledge-pagination button:hover:not(:disabled) {
+  border-color: var(--brand-blue);
+}
+.knowledge-reader-summary {
+  border-left-color: var(--brand-sage-deep);
+  background: #eff7f1;
+}
+.public-knowledge-spinner {
+  border-color: #dcebe0;
+  border-top-color: var(--brand-sage-deep);
+}
+
+@media (max-width: 1024px) {
+  .brand-symbol {
+    width: 52px;
+    height: 52px;
+  }
+  .brand-wordmark strong {
+    font-size: 1.3rem;
+  }
+}
+@media (max-width: 640px) {
+  .brand { gap: 6px; }
+  .brand-symbol { width: 46px; height: 46px; }
+  .brand-wordmark strong { font-size: 1.1rem; }
+  .brand-wordmark small { font-size: .5rem; line-height: 1.25; }
+  .brand-small .brand-symbol { width: 58px; height: 58px; }
+  .brand-small .brand-wordmark strong { font-size: 1.35rem; }
+  .brand-small .brand-wordmark small { font-size: .57rem; }
+}
