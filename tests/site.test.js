@@ -20,7 +20,7 @@ test("el servidor local entrega la landing, sus recursos y los archivos SEO", as
   const homepage = await fetch(base + "/");
   assert.equal(homepage.status, 200);
   assert.match(homepage.headers.get("content-type"), /text\/html/);
-  assert.match(await homepage.text(), /COINPSI/);
+  assert.match(await homepage.text(), /<div id="app"><\/div>/);
 
   const config = await fetch(base + "/runtime-config.js");
   assert.equal(config.status, 200);
@@ -57,7 +57,7 @@ test("el servidor local entrega la landing, sus recursos y los archivos SEO", as
 
   const fallback = await fetch(base + "/pagina/no-encontrada");
   assert.equal(fallback.status, 200);
-  assert.match(await fallback.text(), /COINPSI/);
+  assert.match(await fallback.text(), /<div id="app"><\/div>/);
 
   const head = await fetch(base + "/", { method: "HEAD" });
   assert.equal(head.status, 200);
