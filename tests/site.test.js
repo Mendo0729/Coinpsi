@@ -85,3 +85,29 @@ test("proyecto no tiene dependencias externas registradas", () => {
   assert.equal(Object.keys(pkg.devDependencies || {}).length, 0);
   assert.deepEqual(Object.keys(lock.packages), [""]);
 });
+
+test("LinkedIn corporativo se publica en contacto, pie de página y SEO", () => {
+  const details = fs.readFileSync(path.join(ROOT, "src/contact-details.js"), "utf8");
+  const contact = fs.readFileSync(path.join(ROOT, "src/components/contact.js"), "utf8");
+  const footer = fs.readFileSync(path.join(ROOT, "src/components/footer.js"), "utf8");
+  const linkedIn = "https://www.linkedin.com/company/coinpsi/";
+
+  assert.ok(details.includes(linkedIn));
+  assert.ok(details.includes('export const WHATSAPP_NUMBER = "50760843053"'));
+  assert.ok(details.includes('export const WHATSAPP_DISPLAY = "+507 6084-3053"'));
+  assert.ok(details.includes("https://wa.me/${WHATSAPP_NUMBER}?text=${WHATSAPP_MESSAGE}"));
+  assert.ok(!details.includes("50766449199"));
+  for (const [componentName, content] of [["contacto", contact], ["pie", footer]]) {
+    assert.ok(content.includes("from \"../contact-details.js\""), componentName);
+    assert.ok(content.includes('href="${LINKEDIN_URL}"'), componentName);
+    assert.ok(content.includes('aria-label="LinkedIn de COINPSI"'), componentName);
+    assert.ok(content.includes('href="${WHATSAPP_URL}"'), componentName);
+    assert.ok(content.includes('aria-label="WhatsApp de COINPSI"'), componentName);
+    assert.equal(content.split('href="${WHATSAPP_URL}"').length - 1, 2, componentName);
+    assert.ok(!content.includes("LinkedIn próximamente"), componentName);
+  }
+  const seo = loadSeoConfig(ROOT);
+  assert.ok(seo.socialProfiles.includes(linkedIn));
+  const html = injectSeo(fs.readFileSync(path.join(ROOT, "index.html"), "utf8"), seo);
+  assert.ok(html.includes(linkedIn));
+});
