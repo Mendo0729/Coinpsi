@@ -1,12 +1,7 @@
 import { icon } from "../icons.js";
 import { escapeHtml } from "../utils.js";
 
-const WHATSAPP_NUMBER = "50766449199";
-const WHATSAPP_DISPLAY = "+507 6644-9199";
-const WHATSAPP_MESSAGE = encodeURIComponent(
-  "Hola, deseo recibir información sobre los servicios de COINPSI."
-);
-const INSTAGRAM_URL = "https://www.instagram.com/coinpsi?igsh=MXYxbXZkaW85N3FhOQ==";
+import { WHATSAPP_NUMBER, WHATSAPP_DISPLAY, WHATSAPP_MESSAGE, LINKEDIN_URL, INSTAGRAM_URL } from "../contact-details.js";
 
 function contactInfoItem(iconName, title, main, sub = "") {
   return `<div class="contact-item"><span>${icon(iconName)}</span><div><h4>${title}</h4>${main}${sub ? `<small>${sub}</small>` : ""}</div></div>`;
@@ -38,10 +33,9 @@ export function renderContact(services) {
           <div class="social-block">
             <h4>Redes sociales</h4>
             <div class="social-links">
-              <span class="social-link-disabled" aria-label="LinkedIn próximamente" title="LinkedIn próximamente">${icon("Linkedin")}</span>
+              <a href="${LINKEDIN_URL}" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn de COINPSI" title="LinkedIn">${icon("Linkedin")}</a>
               <a href="${INSTAGRAM_URL}" target="_blank" rel="noopener noreferrer" aria-label="Instagram de COINPSI" title="Instagram">${icon("Instagram")}</a>
             </div>
-            <small class="social-note">LinkedIn estará disponible próximamente.</small>
           </div>
         </div>
         <div class="contact-form-zone reveal delay-1">
