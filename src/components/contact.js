@@ -1,7 +1,7 @@
 import { icon } from "../icons.js";
 import { escapeHtml } from "../utils.js";
 
-import { WHATSAPP_NUMBER, WHATSAPP_DISPLAY, WHATSAPP_MESSAGE, LINKEDIN_URL, INSTAGRAM_URL } from "../contact-details.js";
+import { WHATSAPP_DISPLAY, WHATSAPP_URL, LINKEDIN_URL, INSTAGRAM_URL } from "../contact-details.js";
 
 function contactInfoItem(iconName, title, main, sub = "") {
   return `<div class="contact-item"><span>${icon(iconName)}</span><div><h4>${title}</h4>${main}${sub ? `<small>${sub}</small>` : ""}</div></div>`;
@@ -20,7 +20,7 @@ export function renderContact(services) {
             ${contactInfoItem(
               "PhoneCall",
               "Contacto por WhatsApp",
-              `<a href="https://wa.me/${WHATSAPP_NUMBER}?text=${WHATSAPP_MESSAGE}" target="_blank" rel="noopener noreferrer">${WHATSAPP_DISPLAY}</a>`,
+              `<a href="${WHATSAPP_URL}" target="_blank" rel="noopener noreferrer">${WHATSAPP_DISPLAY}</a>`,
               "Atención y consultas sobre nuestros servicios"
             )}
             ${contactInfoItem(
@@ -33,6 +33,7 @@ export function renderContact(services) {
           <div class="social-block">
             <h4>Redes sociales</h4>
             <div class="social-links">
+              <a href="${WHATSAPP_URL}" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp de COINPSI" title="Escríbenos por WhatsApp">${icon("PhoneCall")}</a>
               <a href="${LINKEDIN_URL}" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn de COINPSI" title="LinkedIn">${icon("Linkedin")}</a>
               <a href="${INSTAGRAM_URL}" target="_blank" rel="noopener noreferrer" aria-label="Instagram de COINPSI" title="Instagram">${icon("Instagram")}</a>
             </div>
