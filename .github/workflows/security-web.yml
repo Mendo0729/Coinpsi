@@ -1,0 +1,63 @@
+name: Seguridad y verificación de COINPSI Web
+
+on:
+  pull_request:
+    paths:
+      - "package.json"
+      - "package-lock.json"
+      - "server.js"
+      - "tests/**"
+      - "scripts/**"
+      - "seo/**"
+      - ".github/workflows/security-web.yml"
+  push:
+    branches: [main]
+    paths:
+      - "package.json"
+      - "package-lock.json"
+      - "server.js"
+      - "tests/**"
+      - "scripts/**"
+      - "seo/**"
+      - ".github/workflows/security-web.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Descargar repositorio
+        uses: actions/checkout@v4
+      - name: Configurar Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Instalar proyecto sin dependencias externas
+        run: npm ci
+      - name: Auditar dependencias
+        run: npm audit --audit-level=moderate
+      - name: Ejecutar pruebas
+        run: npm test
+      - name: Generar versión estática
+        run: npm run build
+      - name: Comprobar contenido publicado y SEO
+        run: |
+          test -f dist/index.html
+          test -f dist/runtime-config.js
+          test -f dist/robots.txt
+          test -f dist/sitemap.xml
+          test -f dist/metadata.json
+          test -f dist/src/main.js
+          test -f dist/src/brand.css
+          test -f dist/src/assets/images/coinpsi-symbol.svg
+          test ! -e dist/server.js
+          test ! -e dist/package.json
+          test ! -e dist/package-lock.json
+          test ! -e dist/tests
+          test ! -e dist/seo
+          grep -q 'https://coinpsi.org/' dist/index.html
+          grep -q 'application/ld+json' dist/index.html
+          grep -q 'window.COINPSI_CONFIG' dist/runtime-config.js
+          ! grep -q 'SEO_META' dist/index.html
