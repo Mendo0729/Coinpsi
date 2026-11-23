@@ -1,19 +1,27 @@
-# Coinpsi
+# COINPSI — Sitio web público
 
-Pagina web de COINPSI con Node.js y Express.
+Web institucional de COINPSI implementada con HTML, CSS y JavaScript modular. Su despliegue en Render utiliza **Static Site** y publica únicamente la carpeta `dist/`.
 
-## Run Locally
+## Dependencias
 
-**Prerequisites:** Node.js 20.x
+**No hay dependencias externas de npm.** El proyecto utiliza Node.js para construir el sitio estático y para facilitar un servidor de desarrollo local. El script de compilación y el generador de metadatos SEO usan exclusivamente `node:fs` y `node:path`. El servidor local usa `node:http` y `node:fs/promises`, en lugar de Express.
 
-1. Install dependencies:
-   ```bash
-   npm install
-   ```
-2. Configure environment variables using `.env.example` as reference.
-3. Run the app:
-   ```bash
-   npm run dev
-   ```
+Las fuentes de Google Fonts y los servicios remotos usados por el navegador, incluida Coinpsi-API, son recursos de ejecución distintos de las dependencias npm.
 
-The app runs at `http://localhost:3000` by default.
+## Comandos
+
+- `npm ci`: verifica el archivo de bloqueo sin instalar paquetes externos.
+- `npm run build`: crea `dist/`, copia los recursos e inyecta SEO y la URL de la API.
+- `npm start`: servidor local en `http://localhost:3000`.
+- `npm run dev`: servidor local usando `.env.development` (archivo local, no se publica).
+- `npm test`: verifica servidor, recursos, SEO y manifiestos.
+- `npm audit`: revisa las dependencias npm.
+
+## Render
+
+- Tipo de servicio: **Static Site**.
+- Build command: `npm ci && npm run build`.
+- Publish directory: `dist`.
+- Variable de entorno opcional: `API_BASE_URL` (valor predeterminado en el build: `https://coinpsi-api.mendotech.lat`).
+
+El archivo `seo/seo.config.json` se utiliza únicamente durante la compilación. La salida contiene el título, la descripción, el canonical y los datos estructurados generados para el dominio `https://coinpsi.org/`.

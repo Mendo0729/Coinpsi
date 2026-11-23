@@ -10,6 +10,8 @@ const excludedEntries = new Set([
   "node_modules",
   "dist",
   "scripts",
+  "tests",
+  "coverage",
   "seo",
   "server.js",
   "package.json",
