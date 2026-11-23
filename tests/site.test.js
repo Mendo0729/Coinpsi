@@ -111,3 +111,21 @@ test("LinkedIn corporativo se publica en contacto, pie de página y SEO", () => 
   const html = injectSeo(fs.readFileSync(path.join(ROOT, "index.html"), "utf8"), seo);
   assert.ok(html.includes(linkedIn));
 });
+
+test("el logo institucional de WhatsApp aparece en contacto y pie de página", () => {
+  const asset = "./src/assets/images/logotipo-grande-de-whatssapp.png";
+  const fullPath = path.join(ROOT, "src/assets/images/logotipo-grande-de-whatssapp.png");
+  const png = fs.readFileSync(fullPath);
+  assert.equal(png.subarray(0, 8).toString("hex"), "89504e470d0a1a0a");
+  assert.equal(png.readUInt32BE(16), 24);
+  assert.equal(png.readUInt32BE(20), 24);
+
+  for (const component of ["contact.js", "footer.js"]) {
+    const content = fs.readFileSync(path.join(ROOT, "src/components", component), "utf8");
+    assert.ok(content.includes('class="whatsapp-social-link"'), component);
+    assert.ok(content.includes('class="whatsapp-logo"'), component);
+    assert.ok(content.includes(`src="${asset}"`), component);
+    assert.ok(content.includes('href="${WHATSAPP_URL}"'), component);
+    assert.equal((content.match(/class="whatsapp-logo"/g) || []).length, 1, component);
+  }
+});

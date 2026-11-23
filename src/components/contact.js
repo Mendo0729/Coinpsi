@@ -33,7 +33,7 @@ export function renderContact(services) {
           <div class="social-block">
             <h4>Redes sociales</h4>
             <div class="social-links">
-              <a href="${WHATSAPP_URL}" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp de COINPSI" title="Escríbenos por WhatsApp">${icon("PhoneCall")}</a>
+              <a class="whatsapp-social-link" href="${WHATSAPP_URL}" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp de COINPSI" title="Escríbenos por WhatsApp"><img class="whatsapp-logo" src="./src/assets/images/logotipo-grande-de-whatssapp.png" width="24" height="24" alt="" loading="lazy" /></a>
               <a href="${LINKEDIN_URL}" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn de COINPSI" title="LinkedIn">${icon("Linkedin")}</a>
               <a href="${INSTAGRAM_URL}" target="_blank" rel="noopener noreferrer" aria-label="Instagram de COINPSI" title="Instagram">${icon("Instagram")}</a>
             </div>
