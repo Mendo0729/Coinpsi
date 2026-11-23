@@ -129,3 +129,12 @@ test("el logo institucional de WhatsApp aparece en contacto y pie de página", (
     assert.equal((content.match(/class="whatsapp-logo"/g) || []).length, 1, component);
   }
 });
+
+test("WhatsApp comparte el mismo hover y sombreado que los iconos sociales", () => {
+  const css = fs.readFileSync(path.join(ROOT, "src/index.css"), "utf8");
+  const styles = fs.readFileSync(path.join(ROOT, "src/contact-updates.css"), "utf8");
+  assert.match(css, /\.social-links a:hover\s*\{/);
+  assert.match(css, /\.social-links a\s*\{[^}]*box-shadow:\s*var\(--shadow-sm\)/s);
+  assert.doesNotMatch(styles, /\.social-links\s+\.whatsapp-social-link:hover/);
+  assert.doesNotMatch(styles, /\.social-links\s+\.whatsapp-social-link:focus-visible/);
+});
