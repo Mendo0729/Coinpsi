@@ -74,3 +74,34 @@
   object-fit: contain;
 }
 
+
+/* La protección anti-spam no interfiere con el lector de pantalla ni el tabulador. */
+.contact-honeypot {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.contact-privacy-note {
+  margin: -4px 0 0;
+  color: var(--slate-500);
+  font-size: 0.78rem;
+  line-height: 1.55;
+}
+
+.contact-error {
+  border: 1px solid #fecaca;
+  border-radius: 14px;
+  padding: 14px 16px;
+  color: #991b1b;
+  background: #fef2f2;
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+.form-submit:disabled {
+  opacity: 0.72;
+  cursor: wait;
+}

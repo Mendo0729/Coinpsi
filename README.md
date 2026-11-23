@@ -25,3 +25,11 @@ Las fuentes de Google Fonts y los servicios remotos usados por el navegador, inc
 - Variable de entorno opcional: `API_BASE_URL` (valor predeterminado en el build: `https://coinpsi-api.mendotech.lat`).
 
 El archivo `seo/seo.config.json` se utiliza únicamente durante la compilación. La salida contiene el título, la descripción, el canonical y los datos estructurados generados para el dominio `https://coinpsi.org/`.
+
+## Formulario de contacto
+
+La web envía consultas a `POST /api/v1/contact` en la API de COINPSI. El formulario comunica éxito **solo** cuando la API confirma que el proveedor Resend aceptó la solicitud. Los errores de red, validación y límite de envíos se muestran a la persona sin borrar los datos del formulario.
+
+El formulario ya no guarda consultas ni datos personales en `localStorage` y no presenta una falsa bandeja de entrada pública. El backend debe configurar `RESEND_API_KEY` en Render (nunca en esta web estática). No se agregan dependencias al frontend.
+
+La primera entrega no almacena consultas en PostgreSQL: la información solo se envía al buzón institucional `info@coinpsi.org`. No incluir datos clínicos sensibles.
