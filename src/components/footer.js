@@ -1,7 +1,7 @@
 import { icon } from "../icons.js";
 import { logoTemplate } from "../utils.js";
 
-import { WHATSAPP_NUMBER, WHATSAPP_DISPLAY, WHATSAPP_MESSAGE, LINKEDIN_URL, INSTAGRAM_URL } from "../contact-details.js";
+import { WHATSAPP_DISPLAY, WHATSAPP_URL, LINKEDIN_URL, INSTAGRAM_URL } from "../contact-details.js";
 
 export function renderFooter() {
   return `
@@ -13,6 +13,7 @@ export function renderFooter() {
             ${logoTemplate("small")}
             <p>Corporación de Investigaciones Psicológicas. Comprometidos con el desarrollo de metodologías científicas para fomentar la felicidad, bienestar integral y resiliencia organizacional de forma colectiva.</p>
             <div class="social-links">
+              <a href="${WHATSAPP_URL}" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp de COINPSI" title="Escríbenos por WhatsApp">${icon("PhoneCall")}</a>
               <a href="${LINKEDIN_URL}" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn de COINPSI" title="LinkedIn">${icon("Linkedin")}</a>
               <a href="${INSTAGRAM_URL}" target="_blank" rel="noopener noreferrer" aria-label="Instagram de COINPSI" title="Instagram">${icon("Instagram")}</a>
             </div>
@@ -30,7 +31,7 @@ export function renderFooter() {
           <div>
             <h4>Información de Atención</h4>
             <div class="footer-contact">
-              <a href="https://wa.me/${WHATSAPP_NUMBER}?text=${WHATSAPP_MESSAGE}" target="_blank" rel="noopener noreferrer">
+              <a href="${WHATSAPP_URL}" target="_blank" rel="noopener noreferrer">
                 ${icon("Phone")}<span>WhatsApp: ${WHATSAPP_DISPLAY}</span>
               </a>
               <a href="mailto:info@coinpsi.org">
