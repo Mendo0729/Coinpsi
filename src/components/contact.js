@@ -73,6 +73,13 @@ export function renderContact(services) {
 }
 
 export function initContact() {
+  // Eliminate PII retained by the previous demo-only form.
+  // New submissions are never stored in the browser.
+  try {
+    localStorage.removeItem("coinpsi_contacts");
+  } catch {
+    // Browser storage may be disabled by privacy settings.
+  }
   const form = document.getElementById("contact-form");
   const success = document.getElementById("contact-success");
 

@@ -18,7 +18,8 @@ async function loadClient() {
 
 test("el formulario no mantiene consultas en localStorage ni simula envíos", () => {
   const source = read("src/components/contact.js");
-  assert.doesNotMatch(source, /localStorage|renderInbox|setTimeout\(/);
+  assert.doesNotMatch(source, /localStorage\.(?:getItem|setItem)|renderInbox|setTimeout\(/);
+  assert.match(source, /localStorage\.removeItem\("coinpsi_contacts"\)/);
   assert.match(source, /await sendContact\(data\)/);
   assert.match(source, /name="website"/);
   assert.match(source, /No incluyas datos clínicos/);
