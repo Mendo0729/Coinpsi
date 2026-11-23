@@ -93,11 +93,17 @@ test("LinkedIn corporativo se publica en contacto, pie de página y SEO", () => 
   const linkedIn = "https://www.linkedin.com/company/coinpsi/";
 
   assert.ok(details.includes(linkedIn));
+  assert.ok(details.includes('export const WHATSAPP_NUMBER = "50760843053"'));
+  assert.ok(details.includes('export const WHATSAPP_DISPLAY = "+507 6084-3053"'));
+  assert.ok(details.includes("https://wa.me/${WHATSAPP_NUMBER}?text=${WHATSAPP_MESSAGE}"));
+  assert.ok(!details.includes("50766449199"));
   for (const [componentName, content] of [["contacto", contact], ["pie", footer]]) {
     assert.ok(content.includes("from \"../contact-details.js\""), componentName);
     assert.ok(content.includes('href="${LINKEDIN_URL}"'), componentName);
     assert.ok(content.includes('aria-label="LinkedIn de COINPSI"'), componentName);
-    assert.ok(content.includes('href="https://wa.me/${WHATSAPP_NUMBER}'), componentName);
+    assert.ok(content.includes('href="${WHATSAPP_URL}"'), componentName);
+    assert.ok(content.includes('aria-label="WhatsApp de COINPSI"'), componentName);
+    assert.equal(content.split('href="${WHATSAPP_URL}"').length - 1, 2, componentName);
     assert.ok(!content.includes("LinkedIn próximamente"), componentName);
   }
   const seo = loadSeoConfig(ROOT);
