@@ -74,9 +74,3 @@
   object-fit: contain;
 }
 
-.social-links .whatsapp-social-link:hover,
-.social-links .whatsapp-social-link:focus-visible {
-  background: var(--slate-50);
-  border-color: var(--brand-sage);
-  color: var(--brand-sage-deep);
-}
