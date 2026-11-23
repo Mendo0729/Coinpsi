@@ -1,12 +1,7 @@
 import { icon } from "../icons.js";
 import { logoTemplate } from "../utils.js";
 
-const WHATSAPP_NUMBER = "50766449199";
-const WHATSAPP_DISPLAY = "+507 6644-9199";
-const WHATSAPP_MESSAGE = encodeURIComponent(
-  "Hola, deseo recibir información sobre los servicios de COINPSI."
-);
-const INSTAGRAM_URL = "https://www.instagram.com/coinpsi?igsh=MXYxbXZkaW85N3FhOQ==";
+import { WHATSAPP_NUMBER, WHATSAPP_DISPLAY, WHATSAPP_MESSAGE, LINKEDIN_URL, INSTAGRAM_URL } from "../contact-details.js";
 
 export function renderFooter() {
   return `
@@ -18,10 +13,9 @@ export function renderFooter() {
             ${logoTemplate("small")}
             <p>Corporación de Investigaciones Psicológicas. Comprometidos con el desarrollo de metodologías científicas para fomentar la felicidad, bienestar integral y resiliencia organizacional de forma colectiva.</p>
             <div class="social-links">
-              <span class="social-link-disabled" aria-label="LinkedIn próximamente" title="LinkedIn próximamente">${icon("Linkedin")}</span>
+              <a href="${LINKEDIN_URL}" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn de COINPSI" title="LinkedIn">${icon("Linkedin")}</a>
               <a href="${INSTAGRAM_URL}" target="_blank" rel="noopener noreferrer" aria-label="Instagram de COINPSI" title="Instagram">${icon("Instagram")}</a>
             </div>
-            <small class="social-note">LinkedIn estará disponible próximamente.</small>
           </div>
           <div>
             <h4>Menú Rápido</h4>
