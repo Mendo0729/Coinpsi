@@ -65,3 +65,18 @@
     align-items: center;
   }
 }
+
+/* El logotipo verde salvia de WhatsApp conserva su color institucional. */
+.social-links .whatsapp-logo {
+  display: block;
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+
+.social-links .whatsapp-social-link:hover,
+.social-links .whatsapp-social-link:focus-visible {
+  background: var(--slate-50);
+  border-color: var(--brand-sage);
+  color: var(--brand-sage-deep);
+}
