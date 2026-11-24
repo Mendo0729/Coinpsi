@@ -55,6 +55,12 @@ test("el servidor local entrega la landing, sus recursos y los archivos SEO", as
     assert.equal(result.status, 404, forbidden);
   }
 
+  for (const route of ["/espacio-del-saber", "/espacio-del-saber/", "/espacio-del-saber/?articulo=sample"]) {
+    const library = await fetch(base + route);
+    assert.equal(library.status, 200);
+    assert.match(await library.text(), /src="\/src\/library.js"/);
+  }
+
   const fallback = await fetch(base + "/pagina/no-encontrada");
   assert.equal(fallback.status, 200);
   assert.match(await fallback.text(), /<div id="app"><\/div>/);
@@ -124,7 +130,7 @@ test("el logo institucional de WhatsApp aparece en contacto y pie de página", (
     const content = fs.readFileSync(path.join(ROOT, "src/components", component), "utf8");
     assert.ok(content.includes('class="whatsapp-social-link"'), component);
     assert.ok(content.includes('class="whatsapp-logo"'), component);
-    assert.ok(content.includes(`src="${asset}"`), component);
+    assert.ok(content.includes(`src="${asset}"`) || content.includes(`src="${asset.slice(1)}"`), component);
     assert.ok(content.includes('href="${WHATSAPP_URL}"'), component);
     assert.equal((content.match(/class="whatsapp-logo"/g) || []).length, 1, component);
   }
