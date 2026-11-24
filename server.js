@@ -104,6 +104,11 @@ function createServer({ apiBaseUrl = process.env.API_BASE_URL || "http://localho
       return;
     }
 
+    if (pathname === "/espacio-del-saber" || pathname === "/espacio-del-saber/" || pathname === "/espacio-del-saber/index.html") {
+      await sendFile(res, "/espacio-del-saber/index.html", method);
+      return;
+    }
+
     const segments = pathname.split("/").slice(1);
     // Recursos publicados por la landing: assets y archivos SEO de la raíz.
     const rootPublicFiles = new Set(["/robots.txt", "/sitemap.xml", "/metadata.json"]);
