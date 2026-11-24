@@ -2,12 +2,12 @@ import { icon } from "../icons.js";
 import { logoTemplate } from "../utils.js";
 
 const navLinks = [
-  ["Quiénes Somos", "#quienes-somos"],
-  ["Servicios", "#servicios"],
-  ["Responsabilidad social", "#responsabilidad-social"],
-  ["Espacio del Saber", "#espacio-del-saber"],
-  ["Eventos", "#eventos"],
-  ["Galería", "#galeria"]
+  ["Quiénes Somos", "/#quienes-somos"],
+  ["Servicios", "/#servicios"],
+  ["Responsabilidad social", "/#responsabilidad-social"],
+  ["Espacio del Saber", "/espacio-del-saber/"],
+  ["Eventos", "/#eventos"],
+  ["Galería", "/#galeria"]
 ];
 
 export function renderHeader() {
@@ -19,7 +19,7 @@ export function renderHeader() {
           <nav class="desktop-nav">
             ${navLinks.map(([name, href]) => `<a href="${href}">${name}</a>`).join("")}
           </nav>
-          <a id="header-contact-btn" href="#contacto" class="btn btn-primary header-cta">
+          <a id="header-contact-btn" href="/#contacto" class="btn btn-primary header-cta">
             ${icon("PhoneCall")}<span>Solicitar Información</span>
           </a>
           <button id="mobile-menu-toggle" class="icon-button mobile-toggle" aria-label="Abrir menú">
@@ -30,7 +30,7 @@ export function renderHeader() {
       <nav id="mobile-navigation-drawer" class="mobile-drawer">
         <div class="mobile-drawer-inner">
           ${navLinks.map(([name, href]) => `<a href="${href}">${name}</a>`).join("")}
-          <a id="mobile-header-contact-btn" href="#contacto" class="btn btn-primary mobile-contact">${icon("PhoneCall")}<span>Solicitar Información</span></a>
+          <a id="mobile-header-contact-btn" href="/#contacto" class="btn btn-primary mobile-contact">${icon("PhoneCall")}<span>Solicitar Información</span></a>
         </div>
       </nav>
     </header>

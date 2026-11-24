@@ -20,7 +20,6 @@ import {
   renderGalleryShell
 } from "./components/gallery.js";
 import {
-  knowledgeModalTemplate,
   renderKnowledgeEmpty,
   renderKnowledgeError,
   renderKnowledgePosts,
@@ -159,13 +158,6 @@ function initGlobalClickHandlers() {
       knowledgePage += knowledgePageButton.dataset.knowledgePage === "next" ? 1 : -1;
       renderKnowledgePage();
       document.getElementById("espacio-del-saber")?.scrollIntoView({ behavior: "smooth", block: "start" });
-      return;
-    }
-
-    const knowledgeButton = event.target.closest("[data-knowledge-id]");
-    if (knowledgeButton) {
-      const post = knowledgePosts.find((item) => item.id === knowledgeButton.dataset.knowledgeId);
-      if (post) openModal(knowledgeModalTemplate(post));
       return;
     }
 

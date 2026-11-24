@@ -13,7 +13,7 @@ export function renderFooter() {
             ${logoTemplate("small")}
             <p>Corporación de Investigaciones Psicológicas. Comprometidos con el desarrollo de metodologías científicas para fomentar la felicidad, bienestar integral y resiliencia organizacional de forma colectiva.</p>
             <div class="social-links">
-              <a class="whatsapp-social-link" href="${WHATSAPP_URL}" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp de COINPSI" title="Escríbenos por WhatsApp"><img class="whatsapp-logo" src="./src/assets/images/logotipo-grande-de-whatssapp.png" width="24" height="24" alt="" loading="lazy" /></a>
+              <a class="whatsapp-social-link" href="${WHATSAPP_URL}" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp de COINPSI" title="Escríbenos por WhatsApp"><img class="whatsapp-logo" src="/src/assets/images/logotipo-grande-de-whatssapp.png" width="24" height="24" alt="" loading="lazy" /></a>
               <a href="${LINKEDIN_URL}" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn de COINPSI" title="LinkedIn">${icon("Linkedin")}</a>
               <a href="${INSTAGRAM_URL}" target="_blank" rel="noopener noreferrer" aria-label="Instagram de COINPSI" title="Instagram">${icon("Instagram")}</a>
             </div>
@@ -21,11 +21,12 @@ export function renderFooter() {
           <div>
             <h4>Menú Rápido</h4>
             <nav class="footer-menu">
-              <a href="#quienes-somos">¿Quiénes Somos?</a>
-              <a href="#servicios">Nuestros Servicios</a>
-              <a href="#dream-week">Tómate un Break</a>
-              <a href="#eventos" class="highlight">Próximos Eventos</a>
-              <a href="#galeria">Galería de Fotos</a>
+              <a href="/#quienes-somos">¿Quiénes Somos?</a>
+              <a href="/#servicios">Nuestros Servicios</a>
+              <a href="/#dream-week">Tómate un Break</a>
+              <a href="/espacio-del-saber/">Espacio del Saber</a>
+              <a href="/#eventos" class="highlight">Próximos Eventos</a>
+              <a href="/#galeria">Galería de Fotos</a>
             </nav>
           </div>
           <div>
@@ -43,8 +44,8 @@ export function renderFooter() {
         <div class="footer-bottom">
           <span>&copy; ${new Date().getFullYear()} COINPSI (Corporación de Investigaciones Psicológicas). Todos los derechos reservados.</span>
           <div>
-            <a href="#terms">Términos de servicio</a>
-            <a href="#privacy">Privacidad y Confidencialidad</a>
+            <a href="/#terms">Términos de servicio</a>
+            <a href="/#privacy">Privacidad y Confidencialidad</a>
             <button id="footer-back-to-top" class="icon-button" title="Volver Arriba">${icon("ChevronUp")}</button>
           </div>
         </div>
