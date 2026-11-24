@@ -19,25 +19,16 @@ import {
   renderGalleryGrid,
   renderGalleryShell
 } from "./components/gallery.js";
-import {
-  renderKnowledgeEmpty,
-  renderKnowledgeError,
-  renderKnowledgePosts,
-  renderKnowledgeShell
-} from "./components/knowledge.js";
 import { renderAllies } from "./components/allies.js";
 import { renderContact, initContact, handleContactSubmit } from "./components/contact.js";
 import { renderFooter, initFooter } from "./components/footer.js";
 import { getPublishedEvents } from "./services/event.service.js";
 import { getPublishedGalleryItems } from "./services/gallery.service.js";
-import { getPublishedKnowledgePosts } from "./services/knowledge.service.js";
 
 const { services, allies } = COINPSI_DATA;
 let events = [];
 let eventView = null;
 let galleryItems = [];
-let knowledgePosts = [];
-let knowledgePage = 1;
 
 function renderApp() {
   document.getElementById("app").innerHTML = `
@@ -47,7 +38,6 @@ function renderApp() {
       ${renderAbout()}
       ${renderServices(services)}
       ${renderTomateUnBreak()}
-      ${renderKnowledgeShell()}
       ${renderEventsShell()}
       ${renderGalleryShell()}
       ${renderAllies(allies)}
@@ -63,12 +53,6 @@ function renderEventCalendar() {
   renderEventFilters(events, eventView);
   const pagination = renderEventsList(events, eventView);
   eventView.page = pagination.page;
-  observeReveal();
-}
-
-function renderKnowledgePage() {
-  const pagination = renderKnowledgePosts(knowledgePosts, knowledgePage);
-  knowledgePage = pagination.page;
   observeReveal();
 }
 
@@ -103,23 +87,6 @@ async function loadPublishedGallery() {
   }
 }
 
-async function loadPublishedKnowledge() {
-  try {
-    knowledgePosts = await getPublishedKnowledgePosts();
-    knowledgePage = 1;
-
-    if (knowledgePosts.length) {
-      renderKnowledgePage();
-    } else {
-      renderKnowledgeEmpty();
-    }
-  } catch (error) {
-    knowledgePosts = [];
-    knowledgePage = 1;
-    renderKnowledgeError(error.message || "No fue posible cargar Espacio del Saber.");
-  }
-}
-
 async function initApp() {
   initHeader();
   initAbout();
@@ -132,8 +99,7 @@ async function initApp() {
 
   await Promise.all([
     loadPublishedEvents(),
-    loadPublishedGallery(),
-    loadPublishedKnowledge()
+    loadPublishedGallery()
   ]);
 }
 
@@ -150,14 +116,6 @@ function initGlobalClickHandlers() {
     if (serviceBtn) {
       const service = services.find((item) => item.id === serviceBtn.dataset.serviceId);
       if (service) openModal(openServiceModal(service));
-      return;
-    }
-
-    const knowledgePageButton = event.target.closest("[data-knowledge-page]");
-    if (knowledgePageButton) {
-      knowledgePage += knowledgePageButton.dataset.knowledgePage === "next" ? 1 : -1;
-      renderKnowledgePage();
-      document.getElementById("espacio-del-saber")?.scrollIntoView({ behavior: "smooth", block: "start" });
       return;
     }
 
